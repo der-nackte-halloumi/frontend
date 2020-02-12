@@ -21,7 +21,7 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "dev": "if [ -f .env ]; then export $(cat .env); fi; rollup -c -w",
     "start": "sirv public --single",
     "start:dev": "sirv public --single --dev",
     "clean": "rm -r public/bundle.* public/main.*"
