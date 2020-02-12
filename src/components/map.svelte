@@ -1,8 +1,8 @@
 <script>
-  import { afterUpdate, onMount } from 'svelte';
-  import L from 'leaflet';
+  import { afterUpdate, onMount } from "svelte";
+  import L from "leaflet";
 
-  import { MAPBOX_TOKEN } from '../config';
+  import { MAPBOX_TOKEN } from "../config";
 
   export let latitude = 0;
   export let longitude = 0;
@@ -12,7 +12,7 @@
   let dataLayer = L.layerGroup();
 
   onMount(() => {
-    map = L.map('map').setView([latitude, longitude], 13);
+    map = L.map("map").setView([latitude, longitude], 13);
 
     L.tileLayer(
       `https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=${MAPBOX_TOKEN}`,
@@ -20,9 +20,9 @@
         attribution:
           'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
-        id: 'mapbox.streets',
-        accessToken: MAPBOX_TOKEN,
-      },
+        id: "mapbox.streets",
+        accessToken: MAPBOX_TOKEN
+      }
     ).addTo(map);
     dataLayer.addTo(map);
   });
@@ -43,7 +43,7 @@
     if (data.length > 0) {
       map.fitBounds(new L.featureGroup(markers).getBounds(), {
         padding: [1, 1],
-        maxZoom: Math.max(map.getZoom(), 15),
+        maxZoom: Math.max(map.getZoom(), 15)
       });
     }
   });
