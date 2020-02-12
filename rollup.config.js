@@ -1,28 +1,27 @@
-import svelte from 'rollup-plugin-svelte';
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import livereload from 'rollup-plugin-livereload';
-import { terser } from 'rollup-plugin-terser';
-import replace from '@rollup/plugin-replace';
+import svelte from "rollup-plugin-svelte";
+import resolve from "rollup-plugin-node-resolve";
+import commonjs from "rollup-plugin-commonjs";
+import livereload from "rollup-plugin-livereload";
+import { terser } from "rollup-plugin-terser";
+import replace from "@rollup/plugin-replace";
 
-import rollup_start_dev from './rollup_start_dev';
+import rollup_start_dev from "./rollup_start_dev";
 
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-  input: 'src/main.js',
+  input: "src/main.js",
   output: {
     sourcemap: true,
-    format: 'esm',
-    name: 'app',
-    dir: 'public',
-    chunkFileNames: 'bundle.[name]-[hash].js',
+    format: "esm",
+    name: "app",
+    dir: "public",
+    chunkFileNames: "bundle.[name]-[hash].js"
   },
   plugins: [
     replace({
-      __buildEnv__: production ? 'production' : 'development',
-      __apiUrl__: production && `api.${process.env.TLD}`,
-      __mapboxToken__: process.env.FE_MAPBOX_TOKEN,
+      __apiUrl__: process.env.API_URL,
+      __mapboxToken__: process.env.FE_MAPBOX_TOKEN
     }),
     svelte({
       // enable run-time checks when not in production
@@ -30,8 +29,8 @@ export default {
       // we'll extract any component CSS out into
       // a separate file — better for performance
       css: css => {
-        css.write('public/bundle.css');
-      },
+        css.write("public/bundle.css");
+      }
     }),
 
     // If you have external dependencies installed from
@@ -42,7 +41,7 @@ export default {
     resolve({
       browser: true,
       dedupe: importee =>
-        importee === 'svelte' || importee.startsWith('svelte/'),
+        importee === "svelte" || importee.startsWith("svelte/")
     }),
     commonjs(),
 
@@ -52,13 +51,13 @@ export default {
 
     // Watch the `public` directory and refresh the
     // browser on changes when not in production
-    !production && livereload('public'),
+    !production && livereload("public"),
 
     // If we're building for production (npm run build
     // instead of npm run dev), minify
-    production && terser(),
+    production && terser()
   ],
   watch: {
-    clearScreen: false,
-  },
+    clearScreen: false
+  }
 };
