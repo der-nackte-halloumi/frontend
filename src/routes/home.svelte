@@ -1,10 +1,10 @@
 <script>
-  import Nav from '../components/nav.svelte';
-  import Map from '../components/map.svelte';
-  import LocationRequestButton from '../components/location-request-button.svelte';
-  import debounce from 'lodash/debounce';
+  import Nav from "../components/nav.svelte";
+  import Map from "../components/map.svelte";
+  import LocationRequestButton from "../components/location-request-button.svelte";
+  import debounce from "lodash/debounce";
 
-  import { searchStores } from '../services/api';
+  import { searchStores } from "../services/api";
 
   export let params;
 
@@ -27,7 +27,8 @@
       error = null;
       isSearching = true;
 
-      data = await searchStores(value);
+      const response = await searchStores(value);
+      data = response.data;
       isSearching = false;
     } catch (error) {
       isSearching = false;
