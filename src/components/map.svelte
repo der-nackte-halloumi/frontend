@@ -1,6 +1,7 @@
 <script>
   import { afterUpdate, onMount } from "svelte";
   import L from "leaflet";
+  import DOMPurify from "dompurify";
 
   import { MAPBOX_TOKEN } from "../config";
 
@@ -34,10 +35,9 @@
     markers = data.reduce((markerList, { lat, lng, name, address }) => {
       if (!lat || !lng) return markerList;
       const marker = L.marker([lat, lng]);
-      // TODO: prevent XSS
       const popup = L.popup({
         className: "map-popup"
-      }).setContent(`<p>${name}</p><p>${address}</p>`);
+      }).setContent(DOMPurify.sanitize(`<p>${name}</p><p>${address}</p>`));
 
       marker.bindPopup(popup);
       marker.addEventListener("click", () => {
