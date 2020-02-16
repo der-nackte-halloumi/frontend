@@ -9,6 +9,7 @@
   export let data = [];
 
   let map;
+  let markers = [];
   let dataLayer = L.layerGroup();
 
   onMount(() => {
@@ -30,15 +31,26 @@
   afterUpdate(() => {
     if (!map) return;
 
-    const markers = data.reduce((markerList, { lat, lng, name }) => {
+    markers = data.reduce((markerList, { lat, lng, name, address }) => {
       if (!lat || !lng) return markerList;
       const marker = L.marker([lat, lng]);
-      marker.setPopupContent(name);
+      // TODO: prevent XSS
+      const popup = L.popup({
+        className: "map-popup"
+      }).setContent(`<p>${name}</p><p>${address}</p>`);
+
+      marker.bindPopup(popup);
+      marker.addEventListener("click", () => {
+        map.openPopup(popup);
+      });
+
       return [...markerList, marker];
     }, []);
 
     dataLayer.clearLayers();
-    markers.forEach(marker => marker.addTo(dataLayer));
+    markers.forEach(marker => {
+      marker.addTo(dataLayer);
+    });
 
     if (data.length > 0) {
       map.fitBounds(new L.featureGroup(markers).getBounds(), {
@@ -53,6 +65,10 @@
   div#map {
     height: 500px;
     width: 100%;
+  }
+
+  :global(.map-popup p:first-of-type) {
+    font-weight: bold;
   }
 </style>
 
