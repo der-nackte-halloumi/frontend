@@ -30,7 +30,7 @@
   });
 
   afterUpdate(() => {
-    if (!map) return;
+    if (!map || !data) return;
 
     markers = data.reduce((markerList, { lat, lng, name, address }) => {
       if (!lat || !lng) return markerList;
