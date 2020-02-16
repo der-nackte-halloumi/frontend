@@ -36,7 +36,7 @@
     }
   }
 
-  // const debouncedHandleSearchInput = debounce(handleSearchInput, 300);
+  const debouncedHandleSearchInput = debounce(handleSearchInput, 300);
 
   // TODO: get nav params
   console.log(params);
@@ -87,7 +87,10 @@
 <section class="question">
   <p class="question_text">
     Wo gibt es
-    <input type="text" on:change={handleSearchInput} disabled={isSearching} />
+    <input
+      type="text"
+      on:keyup={debouncedHandleSearchInput}
+      disabled={isSearching} />
     unverpackt ?
   </p>
   <Map {latitude} {longitude} {data} />
