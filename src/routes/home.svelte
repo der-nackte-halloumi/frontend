@@ -33,7 +33,7 @@
       isSearching = true;
 
       const response = await searchStores(value);
-      data = response.data;
+      data = response.data || [];
       isSearching = false;
     } catch (error) {
       isSearching = false;
