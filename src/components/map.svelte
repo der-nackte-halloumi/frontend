@@ -1,19 +1,25 @@
 <script>
+  import { get } from "svelte/store";
   import { afterUpdate, onMount } from "svelte";
   import L from "leaflet";
   import DOMPurify from "dompurify";
 
   import { MAPBOX_TOKEN } from "../config";
 
-  export let latitude = 0;
-  export let longitude = 0;
+  export let uiStore = {};
   export let data = [];
 
   let map;
   let markers = [];
   let dataLayer = L.layerGroup();
 
+  uiStore.subscribe(coords => {
+    if (!map) return;
+    map.setView([coords.latitude, coords.longitude]);
+  });
+
   onMount(() => {
+    const { latitude, longitude } = get(uiStore);
     map = L.map("map").setView([latitude, longitude], 13);
 
     L.tileLayer(
@@ -56,6 +62,11 @@
       map.fitBounds(new L.featureGroup(markers).getBounds(), {
         padding: [1, 1],
         maxZoom: Math.max(map.getZoom(), 15)
+      });
+      const { lat, lng } = map.getCenter();
+      uiStore.set({
+        latitude: lat,
+        longitude: lng
       });
     }
   });

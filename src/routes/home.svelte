@@ -1,19 +1,24 @@
 <script>
+  import { writable } from "svelte/store";
+  import debounce from "lodash/debounce";
   import Nav from "../components/nav.svelte";
   import Map from "../components/map.svelte";
   import LocationRequestButton from "../components/location-request-button.svelte";
-  import debounce from "lodash/debounce";
 
   import { searchStores } from "../services/api";
 
   export let params;
 
-  export let latitude = 52.5162;
-  export let longitude = 13.4041;
+  const mapUiStore = writable({
+    latitude: 52.5162,
+    longitude: 13.4041
+  });
 
   function handleLocationRequest({ coords }) {
-    latitude = coords.latitude;
-    longitude = coords.longitude;
+    mapUiStore.set({
+      latitude: coords.latitude,
+      longitude: coords.longitude
+    });
   }
 
   let isSearching = false;
@@ -93,7 +98,7 @@
       disabled={isSearching} />
     unverpackt ?
   </p>
-  <Map {latitude} {longitude} {data} />
+  <Map uiStore={mapUiStore} {data} />
   <div class="align-right">
     <LocationRequestButton onLocationRequest={handleLocationRequest} />
   </div>
