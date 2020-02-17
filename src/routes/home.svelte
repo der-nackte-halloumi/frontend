@@ -35,9 +35,9 @@
       const response = await searchStores(value);
       data = response.data || [];
       isSearching = false;
-    } catch (error) {
+    } catch (err) {
       isSearching = false;
-      error = error;
+      error = err;
     }
   }
 

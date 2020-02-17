@@ -23,7 +23,7 @@
         } else {
           onPermissionUnavailable();
         }
-      },
+      }
     );
   }
 </script>
