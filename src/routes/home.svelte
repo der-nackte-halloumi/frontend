@@ -49,6 +49,7 @@
 
 <style>
   input {
+    max-width: 100%;
     background-color: transparent;
     text-align: center;
     border-top: none;
