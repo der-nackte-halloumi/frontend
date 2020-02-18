@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactMapGL from "react-map-gl";
 
 interface props {
-  initialLocation: {
+  initialLocation?: {
     latitude: number;
     longitude: number;
   };
@@ -18,3 +18,5 @@ function Map(props: props) {
 
   return <ReactMapGL {...viewport} onViewportChange={setViewport} />;
 }
+
+export default Map;
