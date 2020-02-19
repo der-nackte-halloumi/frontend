@@ -1,8 +1,4 @@
-const { error, parsed: envVariables } = require("dotenv").config();
-
-if (error) {
-  throw error;
-}
+const { parsed: envVariables } = require("dotenv").config();
 
 module.exports = {
   env: {
