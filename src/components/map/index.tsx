@@ -1,18 +1,24 @@
 import React, { useState } from "react";
-import ReactMapGL from "react-map-gl";
+import ReactMapGL, {
+  Marker,
+  NavigationControl,
+  GeolocateControl
+} from "react-map-gl";
+import { Shop } from "../../models/shop";
 
 interface props {
   initialLocation?: {
     latitude: number;
     longitude: number;
   };
+  shops: Array<Shop>;
 }
 
-function Map(props: props) {
+function Map({ initialLocation, shops }: props) {
   const [viewport, setViewport] = useState({
     width: 500,
     height: 500,
-    ...props.initialLocation,
+    ...initialLocation,
     zoom: 13
   });
 
@@ -23,7 +29,22 @@ function Map(props: props) {
         onViewportChange={setViewport}
         mapboxApiAccessToken={process.env.mapboxToken}
         onError={console.info}
-      />
+      >
+        {shops.map(shop => (
+          <Marker key={shop.id} latitude={shop.lat} longitude={shop.lng}>
+            {shop.name}
+          </Marker>
+        ))}
+        <div style={{ position: "absolute", left: 10, top: 10 }}>
+          <GeolocateControl
+            positionOptions={{ enableHighAccuracy: true }}
+            showUserLocation={true}
+          />
+        </div>
+        <div style={{ position: "absolute", right: 10, top: 10 }}>
+          <NavigationControl />
+        </div>
+      </ReactMapGL>
     </>
   );
 }
