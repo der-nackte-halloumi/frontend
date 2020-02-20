@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --coverage --ci"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -16,11 +19,15 @@
     "react-map-gl": "^5.2.3"
   },
   "devDependencies": {
+    "@types/jest": "^25.1.3",
     "@types/lodash": "^4.14.149",
     "@types/node": "^13.7.1",
     "@types/react": "^16.9.20",
     "@types/react-map-gl": "^5.1.1",
+    "babel-jest": "^25.1.0",
     "dotenv": "^8.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^25.1.0",
     "typescript": "^3.7.5"
   }
 }
