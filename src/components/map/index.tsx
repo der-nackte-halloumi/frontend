@@ -4,6 +4,8 @@ import ReactMapGL, {
   NavigationControl,
   GeolocateControl
 } from "react-map-gl";
+
+import MarkerIcon from "../../components/icons/marker";
 import { Shop } from "../../models/shop";
 
 interface props {
@@ -32,7 +34,7 @@ function Map({ initialLocation, shops }: props) {
       >
         {shops.map(shop => (
           <Marker key={shop.id} latitude={shop.lat} longitude={shop.lng}>
-            {shop.name}
+            <MarkerIcon></MarkerIcon>
           </Marker>
         ))}
         <div style={{ position: "absolute", left: 10, top: 10 }}>

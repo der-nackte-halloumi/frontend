@@ -23,9 +23,11 @@ const Home = () => {
     <>
       <p>Wo gibt es</p>
       <input
-        type="text"
+        type="search"
         onChange={event => setQuery(event.currentTarget.value)}
         value={query}
+        role="search"
+        aria-label="Suche nach einem unverpackten Produkt"
       />
       <p>unverpackt?</p>
       <Map shops={shops} />
