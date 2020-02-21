@@ -35,7 +35,8 @@ interface props {
   shops: Array<Shop>;
 }
 
-const clampZoom = clamp(1, 16);
+const MAX_AUTOMATIC_ZOOM = 16;
+const clampZoom = clamp(1, MAX_AUTOMATIC_ZOOM);
 
 function Map({ initialLocation, shops }: props) {
   const [viewport, setViewport] = useState<ViewportProps>({
@@ -101,6 +102,7 @@ function Map({ initialLocation, shops }: props) {
         ))}
         <div style={{ position: "absolute", left: 10, top: 10 }}>
           <GeolocateControl
+            fitBoundsOptions={{ maxZoom: MAX_AUTOMATIC_ZOOM }}
             positionOptions={{ enableHighAccuracy: true }}
             showUserLocation={true}
           />
