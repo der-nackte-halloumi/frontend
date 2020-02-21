@@ -4,10 +4,17 @@ interface Point {
 }
 
 export const constructBoundingBox = (
-  points: Array<Point>
-): [ReadonlyArray<number>, ReadonlyArray<number>] => {
-  if (points.length < 2) {
+  points: ReadonlyArray<Point>
+): [[number, number], [number, number]] => {
+  if (points.length === 0) {
     throw new Error("at least two points are needed to construct bounding box");
+  }
+  if (points.length === 1) {
+    const { lat, lng } = points[0];
+    return [
+      [lng, lat],
+      [lng, lat]
+    ];
   }
 
   const { latitudes, longitudes } = points.reduce<{

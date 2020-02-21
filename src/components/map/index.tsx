@@ -1,12 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactMapGL, {
   Marker,
   NavigationControl,
-  GeolocateControl
+  GeolocateControl,
+  WebMercatorViewport,
+  FlyToInterpolator,
+  ViewportProps
 } from "react-map-gl";
+import { clamp } from "ramda";
 
 import MarkerIcon from "../../components/icons/marker";
 import { Shop } from "../../models/shop";
+import { constructBoundingBox } from "../../utils/geolocation";
+import { DEFAULT_LOCATION } from "../../constants/geolocation";
+
+// not perfect, but I don’t know a better solution right now to please TS
+const viewportDefaults = {
+  ...DEFAULT_LOCATION,
+  bearing: 0,
+  pitch: 0,
+  altitude: 1.5,
+  maxZoom: 24,
+  minZoom: 0,
+  maxPitch: 60,
+  minPitch: 0
+};
 
 interface props {
   initialLocation?: {
@@ -16,13 +34,36 @@ interface props {
   shops: Array<Shop>;
 }
 
+const clampZoom = clamp(1, 16);
+
 function Map({ initialLocation, shops }: props) {
-  const [viewport, setViewport] = useState({
+  const [viewport, setViewport] = useState<ViewportProps>({
+    ...viewportDefaults,
     width: 500,
     height: 500,
-    ...initialLocation,
-    zoom: 13
+    zoom: 13,
+    ...initialLocation
   });
+
+  useEffect(() => {
+    if (shops.length === 0) return;
+    const boundingBox = constructBoundingBox(shops);
+    const { longitude, latitude, zoom } = new WebMercatorViewport(
+      viewport
+    ).fitBounds(boundingBox, {
+      padding: 20,
+      offset: [0, -100]
+    });
+
+    setViewport({
+      ...viewport,
+      latitude,
+      longitude,
+      zoom: clampZoom(zoom),
+      transitionDuration: 1000,
+      transitionInterpolator: new FlyToInterpolator()
+    });
+  }, [shops]);
 
   return (
     <>
@@ -50,12 +91,5 @@ function Map({ initialLocation, shops }: props) {
     </>
   );
 }
-
-Map.defaultProps = {
-  initialLocation: {
-    latitude: 52.5162,
-    longitude: 13.4041
-  }
-};
 
 export default Map;
