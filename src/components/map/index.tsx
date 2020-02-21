@@ -5,7 +5,8 @@ import ReactMapGL, {
   GeolocateControl,
   WebMercatorViewport,
   FlyToInterpolator,
-  ViewportProps
+  ViewportProps,
+  Popup
 } from "react-map-gl";
 import { clamp } from "ramda";
 
@@ -44,6 +45,10 @@ function Map({ initialLocation, shops }: props) {
     zoom: 13,
     ...initialLocation
   });
+  const [{ showPopup, shop: shopInfo }, setPopup] = useState<{
+    showPopup: boolean;
+    shop: Shop | null;
+  }>({ showPopup: false, shop: null });
 
   useEffect(() => {
     if (shops.length === 0) return;
@@ -73,9 +78,25 @@ function Map({ initialLocation, shops }: props) {
         mapboxApiAccessToken={process.env.mapboxToken}
         onError={console.info}
       >
+        {showPopup && shopInfo && (
+          <Popup
+            latitude={shopInfo.lat}
+            longitude={shopInfo.lng}
+            closeButton={true}
+            closeOnClick={false}
+            onClose={() => setPopup({ showPopup: false, shop: null })}
+            anchor="bottom"
+            dynamicPosition
+          >
+            <p>{shopInfo.name}</p>
+            <p>{shopInfo.address}</p>
+          </Popup>
+        )}
         {shops.map(shop => (
           <Marker key={shop.id} latitude={shop.lat} longitude={shop.lng}>
-            <MarkerIcon></MarkerIcon>
+            <button onClick={() => setPopup({ showPopup: true, shop })}>
+              <MarkerIcon></MarkerIcon>
+            </button>
           </Marker>
         ))}
         <div style={{ position: "absolute", left: 10, top: 10 }}>
