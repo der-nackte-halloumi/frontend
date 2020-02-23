@@ -1,10 +1,32 @@
 import React from "react";
 import Head from "next/head";
 import { AppProps } from "next/app";
+import { styled } from "linaria/react";
+import { css } from "linaria";
 
-export default function App({ Component, pageProps, router }: AppProps) {
-  console.log(`Current path: ${router.pathname}`);
+import Footer from "../components/footer";
+import "./main.css";
 
+const Wrapper = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #fafafa;
+`;
+const footer = css`
+  margin-top: auto;
+`;
+const Main = styled.main`
+  max-width: 1024px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+`;
+
+export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
@@ -17,7 +39,12 @@ export default function App({ Component, pageProps, router }: AppProps) {
           rel="stylesheet"
         />
       </Head>
-      <Component {...pageProps} />
+      <Wrapper>
+        <Main>
+          <Component {...pageProps} />
+        </Main>
+        <Footer className={footer}></Footer>
+      </Wrapper>
     </>
   );
 }

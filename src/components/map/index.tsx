@@ -9,6 +9,7 @@ import ReactMapGL, {
   Popup
 } from "react-map-gl";
 import { clamp } from "ramda";
+import { withSize } from "react-sizeme";
 
 import MarkerIcon from "../../components/icons/marker";
 import { Shop } from "../../models/shop";
@@ -27,18 +28,22 @@ const viewportDefaults = {
   minPitch: 0
 };
 
-interface props {
+interface Props {
   initialLocation?: {
     latitude: number;
     longitude: number;
   };
   shops: Array<Shop>;
+  size: {
+    width: number;
+    height: number;
+  };
 }
 
 const MAX_AUTOMATIC_ZOOM = 16;
 const clampZoom = clamp(1, MAX_AUTOMATIC_ZOOM);
 
-function Map({ initialLocation, shops }: props) {
+function Map({ initialLocation, shops }: Props) {
   const [viewport, setViewport] = useState<ViewportProps>({
     ...viewportDefaults,
     width: 500,
@@ -72,47 +77,45 @@ function Map({ initialLocation, shops }: props) {
   }, [shops]);
 
   return (
-    <>
-      <ReactMapGL
-        {...viewport}
-        onViewportChange={setViewport}
-        mapboxApiAccessToken={process.env.mapboxToken}
-        onError={console.info}
-      >
-        {showPopup && shopInfo && (
-          <Popup
-            latitude={shopInfo.lat}
-            longitude={shopInfo.lng}
-            closeButton={true}
-            closeOnClick={false}
-            onClose={() => setPopup({ showPopup: false, shop: null })}
-            anchor="bottom"
-            dynamicPosition
-          >
-            <p>{shopInfo.name}</p>
-            <p>{shopInfo.address}</p>
-          </Popup>
-        )}
-        {shops.map(shop => (
-          <Marker key={shop.id} latitude={shop.lat} longitude={shop.lng}>
-            <button onClick={() => setPopup({ showPopup: true, shop })}>
-              <MarkerIcon></MarkerIcon>
-            </button>
-          </Marker>
-        ))}
-        <div style={{ position: "absolute", left: 10, top: 10 }}>
-          <GeolocateControl
-            fitBoundsOptions={{ maxZoom: MAX_AUTOMATIC_ZOOM }}
-            positionOptions={{ enableHighAccuracy: true }}
-            showUserLocation={true}
-          />
-        </div>
-        <div style={{ position: "absolute", right: 10, top: 10 }}>
-          <NavigationControl />
-        </div>
-      </ReactMapGL>
-    </>
+    <ReactMapGL
+      {...viewport}
+      onViewportChange={setViewport}
+      mapboxApiAccessToken={process.env.mapboxToken}
+      onError={console.info}
+    >
+      {showPopup && shopInfo && (
+        <Popup
+          latitude={shopInfo.lat}
+          longitude={shopInfo.lng}
+          closeButton={true}
+          closeOnClick={false}
+          onClose={() => setPopup({ showPopup: false, shop: null })}
+          anchor="bottom"
+          dynamicPosition
+        >
+          <p>{shopInfo.name}</p>
+          <p>{shopInfo.address}</p>
+        </Popup>
+      )}
+      {shops.map(shop => (
+        <Marker key={shop.id} latitude={shop.lat} longitude={shop.lng}>
+          <button onClick={() => setPopup({ showPopup: true, shop })}>
+            <MarkerIcon></MarkerIcon>
+          </button>
+        </Marker>
+      ))}
+      <div style={{ position: "absolute", left: 10, top: 10 }}>
+        <GeolocateControl
+          fitBoundsOptions={{ maxZoom: MAX_AUTOMATIC_ZOOM }}
+          positionOptions={{ enableHighAccuracy: true }}
+          showUserLocation={true}
+        />
+      </div>
+      <div style={{ position: "absolute", right: 10, top: 10 }}>
+        <NavigationControl />
+      </div>
+    </ReactMapGL>
   );
 }
 
-export default Map;
+export default withSize()(Map);
