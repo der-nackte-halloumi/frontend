@@ -1,10 +1,19 @@
 import { useState, useEffect } from "react";
-import debounce from "lodash/debounce";
+import { styled } from "linaria/react";
+import { css } from "linaria";
 
 import Map from "../components/map";
 import { searchStores } from "../services/api";
 import { Shop } from "../models/shop";
 import useDebounce from "../utils/use-debounce";
+
+const Question = styled.p`
+  font-family: sans-serif;
+`;
+
+const mono = css`
+  font-family: monospace;
+`;
 
 const Home = () => {
   const [query, setQuery] = useState("");
@@ -21,7 +30,7 @@ const Home = () => {
 
   return (
     <>
-      <p>Wo gibt es</p>
+      <Question>Wo gibt es</Question>
       <input
         type="search"
         onChange={event => setQuery(event.currentTarget.value)}
@@ -29,7 +38,7 @@ const Home = () => {
         role="search"
         aria-label="Suche nach einem unverpackten Produkt"
       />
-      <p>unverpackt?</p>
+      <p className={mono}>unverpackt?</p>
       <Map shops={shops} />
     </>
   );
