@@ -18,11 +18,8 @@ const footer = css`
   margin-top: auto;
 `;
 const Main = styled.main`
-  max-width: 1024px;
+  width: 100%;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   text-align: center;
 `;
 

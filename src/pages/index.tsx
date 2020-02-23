@@ -8,6 +8,9 @@ import useDebounce from "../utils/use-debounce";
 
 const QuestionWrapper = styled.div`
   text-align: center;
+  width: 75%;
+  max-width: 720px;
+  margin: 32px auto;
 
   p {
     font-size: 1.5em;
@@ -15,20 +18,28 @@ const QuestionWrapper = styled.div`
   }
 
   input {
+    height: 2em;
     color: #414141;
     font-size: 1.5em;
     text-align: center;
     width: 100%;
     background: none;
-    outline: none;
-    border-color: #727272;
-    border-width: 0;
-    border-bottom-width: 2px;
+    border: 2px solid transparent;
+    border-bottom: 2px solid #727272;
+    padding: 4px;
+    transition: all 150ms;
+  }
+
+  input:focus,
+  input:active {
+    border: 2px solid #424242;
+    border-radius: 1em;
   }
 `;
 
 const Home = () => {
   const [query, setQuery] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
   const debouncedSearchTerm = useDebounce(query, 300);
   const [shops, setShops] = useState<Array<Shop>>([]);
 
@@ -41,7 +52,7 @@ const Home = () => {
   }, [debouncedSearchTerm]);
 
   return (
-    <>
+    <div style={{ display: "block" }}>
       <QuestionWrapper>
         <p>Wo gibt es</p>
         <input
@@ -50,12 +61,14 @@ const Home = () => {
           value={query}
           role="search"
           aria-label="Suche nach einem unverpackten Produkt"
-          placeholder="Halloumi"
+          placeholder={isFocused ? "" : "Halloumi"}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
         />
         <p>unverpackt?</p>
       </QuestionWrapper>
       <Map shops={shops} />
-    </>
+    </div>
   );
 };
 

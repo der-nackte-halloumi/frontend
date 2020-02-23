@@ -1,4 +1,4 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import { styled } from "linaria/react";
 
 const BaseFooter = styled.footer`
@@ -9,15 +9,13 @@ const BaseFooter = styled.footer`
   text-align: center;
 `;
 
-interface Props {
-  className: string;
-}
-
-const Footer = ({ className }: Props) => {
+const Footer = (props: HTMLAttributes<HTMLDivElement>) => {
   return (
-    <BaseFooter className={className}>
-      <p>about</p>
-    </BaseFooter>
+    <div {...props}>
+      <BaseFooter>
+        <p>about</p>
+      </BaseFooter>
+    </div>
   );
 };
 
