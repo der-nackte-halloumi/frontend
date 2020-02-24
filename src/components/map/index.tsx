@@ -9,12 +9,17 @@ import ReactMapGL, {
 } from "react-map-gl";
 import { clamp } from "ramda";
 import AutoSizer from "react-virtualized-auto-sizer";
+import { css } from "linaria";
 
 import { Shop } from "../../models/shop";
 import { constructBoundingBox } from "../../utils/geolocation";
 import { DEFAULT_LOCATION } from "../../constants/geolocation";
 
 import ButtonMarker from "./button-marker";
+
+const mapPlaceholder = css`
+  background-color: #efe8d7;
+`;
 
 // not perfect, but I don’t know a better solution right now to please TS
 const viewportDefaults = {
@@ -73,51 +78,53 @@ function Map({ initialLocation, shops }: Props) {
   }, [shops]);
 
   return (
-    <AutoSizer disableHeight>
-      {({ width }) => (
-        <ReactMapGL
-          {...viewport}
-          onViewportChange={setViewport}
-          mapboxApiAccessToken={process.env.mapboxToken}
-          onError={console.info}
-          mapStyle="mapbox://styles/chrstnst/ck6zhy4iv4avr1is7blvy0ng9"
-          width={width}
-        >
-          {showPopup && shopInfo && (
-            <Popup
-              latitude={shopInfo.lat}
-              longitude={shopInfo.lng}
-              closeButton={true}
-              closeOnClick={false}
-              onClose={() => setPopup({ showPopup: false, shop: null })}
-              anchor="bottom"
-              offsetTop={-15}
-            >
-              <p>{shopInfo.name}</p>
-              <p>{shopInfo.address}</p>
-            </Popup>
-          )}
-          {shops.map(shop => (
-            <ButtonMarker
-              key={shop.id}
-              latitude={shop.lat}
-              longitude={shop.lng}
-              onClick={() => setPopup({ showPopup: true, shop })}
-            />
-          ))}
-          <div style={{ position: "absolute", left: 10, top: 10 }}>
-            <GeolocateControl
-              fitBoundsOptions={{ maxZoom: MAX_AUTOMATIC_ZOOM }}
-              positionOptions={{ enableHighAccuracy: true }}
-              showUserLocation={true}
-            />
-          </div>
-          <div style={{ position: "absolute", right: 10, top: 10 }}>
-            <NavigationControl />
-          </div>
-        </ReactMapGL>
-      )}
-    </AutoSizer>
+    <div className={mapPlaceholder}>
+      <AutoSizer disableHeight>
+        {({ width }) => (
+          <ReactMapGL
+            {...viewport}
+            onViewportChange={setViewport}
+            mapboxApiAccessToken={process.env.mapboxToken}
+            onError={console.info}
+            mapStyle="mapbox://styles/chrstnst/ck6zhy4iv4avr1is7blvy0ng9"
+            width={width}
+          >
+            {showPopup && shopInfo && (
+              <Popup
+                latitude={shopInfo.lat}
+                longitude={shopInfo.lng}
+                closeButton={true}
+                closeOnClick={false}
+                onClose={() => setPopup({ showPopup: false, shop: null })}
+                anchor="bottom"
+                offsetTop={-15}
+              >
+                <p>{shopInfo.name}</p>
+                <p>{shopInfo.address}</p>
+              </Popup>
+            )}
+            {shops.map(shop => (
+              <ButtonMarker
+                key={shop.id}
+                latitude={shop.lat}
+                longitude={shop.lng}
+                onClick={() => setPopup({ showPopup: true, shop })}
+              />
+            ))}
+            <div style={{ position: "absolute", left: 10, top: 10 }}>
+              <GeolocateControl
+                fitBoundsOptions={{ maxZoom: MAX_AUTOMATIC_ZOOM }}
+                positionOptions={{ enableHighAccuracy: true }}
+                showUserLocation={true}
+              />
+            </div>
+            <div style={{ position: "absolute", right: 10, top: 10 }}>
+              <NavigationControl />
+            </div>
+          </ReactMapGL>
+        )}
+      </AutoSizer>
+    </div>
   );
 }
 
