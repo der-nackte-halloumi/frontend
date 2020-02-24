@@ -27,10 +27,7 @@ const Footer = (props: HTMLAttributes<HTMLDivElement>) => {
             Source code on GitHub
           </a>
         </p>
-        <p>
-          unpackaged.world – build in 2020 with Döner, Ayran, Halloumi and no
-          plastics
-        </p>
+        <p>2020 – unpackaged.world</p>
       </BaseFooter>
     </div>
   );
