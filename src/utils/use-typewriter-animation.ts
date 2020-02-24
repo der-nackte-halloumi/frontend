@@ -10,6 +10,21 @@ export default (
   const [currentEntry, setCurrentEntry] = useState(0);
   const [isPausing, setIsPausing] = useState(false);
 
+  function getNextIndex() {
+    if (dictionary.length === 1) return 0;
+
+    let nextIndex = currentEntry;
+    while (nextIndex === currentEntry) {
+      if (options.randomize) {
+        nextIndex = getRandomInt(0, dictionary.length);
+      } else {
+        nextIndex =
+          currentEntry === dictionary.length - 1 ? 0 : currentEntry + 1;
+      }
+    }
+    return nextIndex;
+  }
+
   useEffect(() => {
     if (!dictionary.length) {
       setValue("");
@@ -22,14 +37,9 @@ export default (
         const nextValue = currentWord.substring(0, value.length + 1);
         setValue(nextValue);
       } else {
-        const nextEntry = options.randomize
-          ? getRandomInt(0, dictionary.length)
-          : currentEntry === dictionary.length - 1
-          ? 0
-          : currentEntry + 1;
         setIsPausing(true);
         setTimeout(() => {
-          setCurrentEntry(nextEntry);
+          setCurrentEntry(getNextIndex());
           setValue("");
           setIsPausing(false);
         }, 1000);
