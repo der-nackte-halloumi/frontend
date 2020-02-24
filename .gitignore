@@ -1,6 +1,25 @@
-.DS_Store
-node_modules
-public/bundle.*
-public/main.*
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 
-.env
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+.linaria-cache
+
+# production
+/build
+
+# misc
+.DS_Store
+.env*
+!.env.dist
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
