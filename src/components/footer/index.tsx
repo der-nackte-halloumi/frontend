@@ -7,13 +7,30 @@ const BaseFooter = styled.footer`
   box-shadow: inset 0px 5px 10px 0px rgba(34, 34, 34, 1);
   padding: 8px;
   text-align: center;
+  font-size: 0.75em;
+
+  a:active,
+  a:visited {
+    color: #fff;
+  }
 `;
 
 const Footer = (props: HTMLAttributes<HTMLDivElement>) => {
   return (
     <div {...props}>
       <BaseFooter>
-        <p>about</p>
+        <p>
+          <a
+            href="https://github.com/der-nackte-halloumi"
+            title="See the source code for unpackaged.world on GitHub"
+          >
+            Source code on GitHub
+          </a>
+        </p>
+        <p>
+          unpackaged.world – built 2020 with Döner, Ayran, Halloumi and no
+          plastics
+        </p>
       </BaseFooter>
     </div>
   );
