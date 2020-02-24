@@ -52,7 +52,7 @@ const Home = () => {
   }, [debouncedSearchTerm]);
 
   return (
-    <div style={{ display: "block" }}>
+    <div>
       <QuestionWrapper>
         <p>Wo gibt es</p>
         <input
