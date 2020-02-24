@@ -36,7 +36,9 @@ const Footer = (props: HTMLAttributes<HTMLDivElement>) => {
             Source code on GitHub
           </a>
         </p>
-        <p>2020 – unpackaged.world</p>
+        <p>
+          2020 – <a href="/">unpackaged.world</a>
+        </p>
       </BaseFooter>
     </div>
   );
