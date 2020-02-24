@@ -10,6 +10,7 @@ import ReactMapGL, {
 import { clamp } from "ramda";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { css } from "linaria";
+import Head from "next/head";
 
 import { Shop } from "../../models/shop";
 import { constructBoundingBox } from "../../utils/geolocation";
@@ -79,6 +80,12 @@ function Map({ initialLocation, shops }: Props) {
 
   return (
     <div className={mapPlaceholder}>
+      <Head>
+        <link
+          href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css"
+          rel="stylesheet"
+        />
+      </Head>
       <AutoSizer disableHeight>
         {({ width }) => (
           <ReactMapGL

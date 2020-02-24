@@ -30,11 +30,13 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>unpackaged.world</title>
         {/* TODO: get proper favicon */}
         <link rel="icon" href="/favicon.ico" />
-        {/* TODO: move that over to the map, so only the map has it */}
-        <link
-          href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css"
-          rel="stylesheet"
+        <meta
+          name="description"
+          content="unpackaged.world helps you finding shops for buying unpackaged products."
         />
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content="unpackaged,unverpackt" />
       </Head>
       <Wrapper>
         <Main>
