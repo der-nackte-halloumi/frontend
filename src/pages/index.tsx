@@ -25,14 +25,14 @@ const QuestionWrapper = styled.div`
     width: 100%;
     background: none;
     border: 2px solid transparent;
-    border-bottom: 2px solid #727272;
+    border-bottom-color: #727272;
     padding: 4px;
     transition: all 150ms;
   }
 
   input:focus,
   input:active {
-    border: 2px solid #424242;
+    border-color: #424242;
     border-radius: 1em;
   }
 `;
@@ -52,7 +52,7 @@ const Home = () => {
   }, [debouncedSearchTerm]);
 
   return (
-    <div>
+    <>
       <QuestionWrapper>
         <p>Wo gibt es</p>
         <input
@@ -68,7 +68,7 @@ const Home = () => {
         <p>unverpackt?</p>
       </QuestionWrapper>
       <Map shops={shops} />
-    </div>
+    </>
   );
 };
 

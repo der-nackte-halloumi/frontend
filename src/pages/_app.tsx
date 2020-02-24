@@ -19,7 +19,7 @@ const footer = css`
 `;
 const Main = styled.main`
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto 32px;
   text-align: center;
 `;
 
