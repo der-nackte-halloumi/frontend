@@ -9,9 +9,18 @@ const BaseFooter = styled.footer`
   text-align: center;
   font-size: 0.75em;
 
-  a:active,
+  a,
+  a:link,
   a:visited {
     color: #fff;
+    text-decoration: underline;
+  }
+
+  a:focus,
+  a:hover,
+  a:active {
+    color: #fff;
+    text-decoration: none;
   }
 `;
 
