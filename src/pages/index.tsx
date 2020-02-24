@@ -5,6 +5,8 @@ import Map from "../components/map";
 import { searchStores } from "../services/api";
 import { Shop } from "../models/shop";
 import useDebounce from "../utils/use-debounce";
+import useTypewriterAnimation from "../utils/use-typewriter-animation";
+import { products } from "../constants/words";
 
 const QuestionWrapper = styled.div`
   text-align: center;
@@ -40,6 +42,9 @@ const QuestionWrapper = styled.div`
 const Home = () => {
   const [query, setQuery] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+  const placeholder = useTypewriterAnimation(isFocused ? [] : [...products], {
+    randomize: true
+  });
   const debouncedSearchTerm = useDebounce(query, 300);
   const [shops, setShops] = useState<Array<Shop>>([]);
 
@@ -61,7 +66,7 @@ const Home = () => {
           value={query}
           role="search"
           aria-label="Suche nach einem unverpackten Produkt"
-          placeholder={isFocused ? "" : "Halloumi"}
+          placeholder={placeholder}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
         />
