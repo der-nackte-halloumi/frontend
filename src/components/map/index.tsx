@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import ReactMapGL, {
-  Marker,
   NavigationControl,
   GeolocateControl,
   WebMercatorViewport,
@@ -11,10 +10,11 @@ import ReactMapGL, {
 import { clamp } from "ramda";
 import AutoSizer from "react-virtualized-auto-sizer";
 
-import MarkerIcon from "../../components/icons/marker";
 import { Shop } from "../../models/shop";
 import { constructBoundingBox } from "../../utils/geolocation";
 import { DEFAULT_LOCATION } from "../../constants/geolocation";
+
+import ButtonMarker from "./button-marker";
 
 // not perfect, but I don’t know a better solution right now to please TS
 const viewportDefaults = {
@@ -91,18 +91,19 @@ function Map({ initialLocation, shops }: Props) {
               closeOnClick={false}
               onClose={() => setPopup({ showPopup: false, shop: null })}
               anchor="bottom"
-              dynamicPosition
+              offsetTop={-15}
             >
               <p>{shopInfo.name}</p>
               <p>{shopInfo.address}</p>
             </Popup>
           )}
           {shops.map(shop => (
-            <Marker key={shop.id} latitude={shop.lat} longitude={shop.lng}>
-              <button onClick={() => setPopup({ showPopup: true, shop })}>
-                <MarkerIcon></MarkerIcon>
-              </button>
-            </Marker>
+            <ButtonMarker
+              key={shop.id}
+              latitude={shop.lat}
+              longitude={shop.lng}
+              onClick={() => setPopup({ showPopup: true, shop })}
+            />
           ))}
           <div style={{ position: "absolute", left: 10, top: 10 }}>
             <GeolocateControl

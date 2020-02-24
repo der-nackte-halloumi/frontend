@@ -28,7 +28,7 @@ const Footer = (props: HTMLAttributes<HTMLDivElement>) => {
           </a>
         </p>
         <p>
-          unpackaged.world – built 2020 with Döner, Ayran, Halloumi and no
+          unpackaged.world – build in 2020 with Döner, Ayran, Halloumi and no
           plastics
         </p>
       </BaseFooter>
