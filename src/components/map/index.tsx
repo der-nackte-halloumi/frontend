@@ -18,10 +18,6 @@ import { DEFAULT_LOCATION } from "../../constants/geolocation";
 
 import ButtonMarker from "./button-marker";
 
-const mapPlaceholder = css`
-  background-color: #efe8d7;
-`;
-
 // not perfect, but I don’t know a better solution right now to please TS
 const viewportDefaults = {
   ...DEFAULT_LOCATION,
@@ -79,7 +75,7 @@ function Map({ initialLocation, shops }: Props) {
   }, [shops]);
 
   return (
-    <div className={mapPlaceholder}>
+    <>
       <Head>
         <link
           href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css"
@@ -131,7 +127,7 @@ function Map({ initialLocation, shops }: Props) {
           </ReactMapGL>
         )}
       </AutoSizer>
-    </div>
+    </>
   );
 }
 

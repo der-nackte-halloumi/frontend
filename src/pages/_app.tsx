@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: #fafafa;
+  background-color: #efe8d7;
 `;
 const footer = css`
   margin-top: auto;
