@@ -34,7 +34,7 @@ export default function App({ Component, pageProps }: AppProps) {
           name="description"
           content="unpackaged.world helps you finding shops for buying unpackaged products."
         />
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="keywords" content="unpackaged,unverpackt" />
       </Head>
