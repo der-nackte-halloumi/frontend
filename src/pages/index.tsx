@@ -26,17 +26,23 @@ const QuestionWrapper = styled.div`
     text-align: center;
     width: 100%;
     background: none;
-    border: 2px solid transparent;
-    border-bottom-color: #727272;
+    border: none;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid #727272;
     padding: 4px;
     transition: all 150ms;
   }
 
   input:focus,
   input:active {
-    border-color: #424242;
+    border: 2px solid #424242;
     border-radius: 1em;
   }
+`;
+
+const Header = styled.header`
+  text-align: right;
+  padding: 16px;
 `;
 
 const Home = () => {
@@ -58,6 +64,9 @@ const Home = () => {
 
   return (
     <>
+      <Header>
+        <span>de</span> <span>en</span> <span>es</span>
+      </Header>
       <QuestionWrapper>
         <p>Wo gibt es</p>
         <input
