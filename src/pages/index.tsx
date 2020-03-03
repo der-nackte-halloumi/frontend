@@ -25,7 +25,7 @@ const QuestionWrapper = styled.div`
     font-size: 1.5em;
     text-align: center;
     width: 100%;
-    background: none;
+    background: #f2f2f2;
     border: none;
     border-top: 2px solid transparent;
     border-bottom: 2px solid #727272;
@@ -33,9 +33,14 @@ const QuestionWrapper = styled.div`
     transition: all 150ms;
   }
 
+  input:hover {
+    border-bottom-color: #424242;
+  }
+
   input:focus,
   input:active {
-    border: 2px solid #424242;
+    color: #1d1e62;
+    border: 2px solid #1d1e62;
     border-radius: 1em;
   }
 `;
@@ -56,9 +61,12 @@ const Home = () => {
 
   useEffect(() => {
     if (debouncedSearchTerm) {
-      searchStores({ query: debouncedSearchTerm }).then(({ data }) =>
-        setShops(data || [])
-      );
+      searchStores({ query: debouncedSearchTerm })
+        .then(
+          ({ data }) => setShops(data || [])
+          // TODO: handle error
+        )
+        .catch(console.error);
     }
   }, [debouncedSearchTerm]);
 
