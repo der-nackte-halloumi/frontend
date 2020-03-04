@@ -62,6 +62,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
+      "npm run test -- --findRelatedTests --ci",
       "npm run eslint -- --cache --fix"
     ]
   }
