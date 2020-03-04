@@ -18,7 +18,8 @@ export default (
       if (options.randomize) {
         nextIndex = getRandomInt(0, dictionary.length);
       } else {
-        nextIndex = currentEntry === dictionary.length - 1 ? 0 : currentEntry + 1;
+        nextIndex =
+          currentEntry === dictionary.length - 1 ? 0 : currentEntry + 1;
       }
     }
     return nextIndex;
