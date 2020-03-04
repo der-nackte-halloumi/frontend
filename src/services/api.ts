@@ -15,10 +15,10 @@ type PaginatedData<T> = {
   };
 };
 
-const paginateData = <T = {}>({
+export const paginateData = <T = {}>({
   headers,
   data,
-}: AxiosResponse<T>): PaginatedData<T> => ({
+}: Pick<AxiosResponse<T>, 'headers' | 'data'>): PaginatedData<T> => ({
   data,
   meta: {
     count: Number(headers['Pagination-Count']) || 0,
