@@ -73,13 +73,17 @@ const Home = () => {
   return (
     <>
       <Header>
-        <span>de</span> <span>en</span> <span>es</span>
+        <span>de</span>
+        {' '}
+        <span>en</span>
+        {' '}
+        <span>es</span>
       </Header>
       <QuestionWrapper>
         <p>Wo gibt es</p>
         <input
           type="search"
-          onChange={event => setQuery(event.currentTarget.value)}
+          onChange={(event) => setQuery(event.currentTarget.value)}
           value={query}
           role="search"
           aria-label="Suche nach einem unverpackten Produkt"

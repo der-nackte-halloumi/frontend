@@ -42,7 +42,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Main>
           <Component {...pageProps} />
         </Main>
-        <Footer className={footer}></Footer>
+        <Footer className={footer} />
       </Wrapper>
     </>
   );

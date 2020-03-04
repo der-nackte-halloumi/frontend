@@ -24,24 +24,24 @@ const BaseFooter = styled.footer`
   }
 `;
 
-const Footer = (props: HTMLAttributes<HTMLDivElement>) => {
-  return (
-    <div {...props}>
-      <BaseFooter>
-        <p>
-          <a
-            href="https://github.com/der-nackte-halloumi"
-            title="See the source code for unpackaged.world on GitHub"
-          >
-            Source code on GitHub
-          </a>
-        </p>
-        <p>
-          2020 – <a href="/">unpackaged.world</a>
-        </p>
-      </BaseFooter>
-    </div>
-  );
-};
+const Footer = (props: HTMLAttributes<HTMLDivElement>) => (
+  <div {...props}>
+    <BaseFooter>
+      <p>
+        <a
+          href="https://github.com/der-nackte-halloumi"
+          title="See the source code for unpackaged.world on GitHub"
+        >
+          Source code on GitHub
+        </a>
+      </p>
+      <p>
+        2020 –
+        {' '}
+        <a href="/">unpackaged.world</a>
+      </p>
+    </BaseFooter>
+  </div>
+);
 
 export default Footer;

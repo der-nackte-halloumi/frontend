@@ -18,17 +18,15 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   longitude: number;
 }
 
-export default ({ latitude, longitude, ...props }: Props) => {
-  return (
-    <Marker
-      latitude={latitude}
-      longitude={longitude}
-      offsetLeft={-7.5}
-      offsetTop={-15}
-    >
-      <Button {...props}>
-        <MarkerIcon></MarkerIcon>
-      </Button>
-    </Marker>
-  );
-};
+export default ({ latitude, longitude, ...props }: Props) => (
+  <Marker
+    latitude={latitude}
+    longitude={longitude}
+    offsetLeft={-7.5}
+    offsetTop={-15}
+  >
+    <Button {...props}>
+      <MarkerIcon />
+    </Button>
+  </Marker>
+);

@@ -96,7 +96,7 @@ function Map({ initialLocation, shops }: Props) {
               <Popup
                 latitude={shopInfo.lat}
                 longitude={shopInfo.lng}
-                closeButton={true}
+                closeButton
                 closeOnClick={false}
                 onClose={() => setPopup({ showPopup: false, shop: null })}
                 anchor="bottom"
@@ -106,7 +106,7 @@ function Map({ initialLocation, shops }: Props) {
                 <p>{shopInfo.address}</p>
               </Popup>
             )}
-            {shops.map(shop => (
+            {shops.map((shop) => (
               <ButtonMarker
                 key={shop.id}
                 latitude={shop.lat}
@@ -118,7 +118,7 @@ function Map({ initialLocation, shops }: Props) {
               <GeolocateControl
                 fitBoundsOptions={{ maxZoom: MAX_AUTOMATIC_ZOOM }}
                 positionOptions={{ enableHighAccuracy: true }}
-                showUserLocation={true}
+                showUserLocation
               />
             </div>
             <div style={{ position: 'absolute', right: 10, top: 10 }}>
