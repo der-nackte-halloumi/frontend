@@ -23,7 +23,7 @@ const Main = styled.main`
   text-align: center;
 `;
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
       <Head>
@@ -40,6 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <Wrapper>
         <Main>
+          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           <Component {...pageProps} />
         </Main>
         <Footer className={footer} />

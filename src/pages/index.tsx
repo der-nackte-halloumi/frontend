@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from 'linaria/react';
 
 import Map from '../components/map';
@@ -50,7 +50,7 @@ const Header = styled.header`
   padding: 16px;
 `;
 
-const Home = () => {
+const Home = (): JSX.Element => {
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const placeholder = useTypewriterAnimation(isFocused ? [] : [...products], {
@@ -81,7 +81,7 @@ const Home = () => {
           type="search"
           onChange={event => setQuery(event.currentTarget.value)}
           value={query}
-          role="search"
+          role="searchbox"
           aria-label="Suche nach einem unverpackten Produkt"
           placeholder={placeholder}
           onFocus={() => setIsFocused(true)}

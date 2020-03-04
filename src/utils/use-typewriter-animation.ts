@@ -5,12 +5,12 @@ import { getRandomInt } from './number';
 export default (
   dictionary: string[],
   options: { randomize?: boolean } = {},
-) => {
+): string => {
   const [value, setValue] = useState('');
   const [currentEntry, setCurrentEntry] = useState(0);
   const [isPausing, setIsPausing] = useState(false);
 
-  function getNextIndex() {
+  function getNextIndex(): number {
     if (dictionary.length === 1) return 0;
 
     let nextIndex = currentEntry;
@@ -28,7 +28,7 @@ export default (
   useEffect(() => {
     if (!dictionary.length) {
       setValue('');
-      return;
+      return undefined;
     }
     const handler = setInterval(() => {
       if (isPausing) return;

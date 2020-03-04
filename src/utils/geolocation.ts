@@ -3,6 +3,7 @@ interface Point {
   lng: number;
 }
 
+// eslint-disable-next-line import/prefer-default-export
 export const constructBoundingBox = (
   points: ReadonlyArray<Point>,
 ): [[number, number], [number, number]] => {
