@@ -1,8 +1,8 @@
-import React, { HTMLAttributes, ButtonHTMLAttributes } from "react";
-import { styled } from "linaria/react";
-import { Marker } from "react-map-gl";
+import React, { HTMLAttributes, ButtonHTMLAttributes } from 'react';
+import { styled } from 'linaria/react';
+import { Marker } from 'react-map-gl';
 
-import MarkerIcon from "../../components/icons/marker";
+import MarkerIcon from '../../components/icons/marker';
 
 const Button = styled.button`
   background: none;

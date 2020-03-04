@@ -1,5 +1,5 @@
-import React, { HTMLAttributes } from "react";
-import { styled } from "linaria/react";
+import React, { HTMLAttributes } from 'react';
+import { styled } from 'linaria/react';
 
 const BaseFooter = styled.footer`
   background-color: #424242;

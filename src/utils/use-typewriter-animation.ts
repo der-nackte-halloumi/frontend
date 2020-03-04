@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-import { getRandomInt } from "./number";
+import { getRandomInt } from './number';
 
 export default (
   dictionary: string[],
-  options: { randomize?: boolean } = {}
+  options: { randomize?: boolean } = {},
 ) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const [currentEntry, setCurrentEntry] = useState(0);
   const [isPausing, setIsPausing] = useState(false);
 
@@ -27,7 +27,7 @@ export default (
 
   useEffect(() => {
     if (!dictionary.length) {
-      setValue("");
+      setValue('');
       return;
     }
     const handler = setInterval(() => {
@@ -40,7 +40,7 @@ export default (
         setIsPausing(true);
         setTimeout(() => {
           setCurrentEntry(getNextIndex());
-          setValue("");
+          setValue('');
           setIsPausing(false);
         }, 1000);
       }

@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import ReactMapGL, {
   NavigationControl,
   GeolocateControl,
   WebMercatorViewport,
   FlyToInterpolator,
   ViewportProps,
-  Popup
-} from "react-map-gl";
-import { clamp } from "ramda";
-import AutoSizer from "react-virtualized-auto-sizer";
-import { css } from "linaria";
-import Head from "next/head";
+  Popup,
+} from 'react-map-gl';
+import { clamp } from 'ramda';
+import AutoSizer from 'react-virtualized-auto-sizer';
+import { css } from 'linaria';
+import Head from 'next/head';
 
-import { Shop } from "../../models/shop";
-import { constructBoundingBox } from "../../utils/geolocation";
-import { DEFAULT_LOCATION } from "../../constants/geolocation";
+import { Shop } from '../../models/shop';
+import { constructBoundingBox } from '../../utils/geolocation';
+import { DEFAULT_LOCATION } from '../../constants/geolocation';
 
-import ButtonMarker from "./button-marker";
+import ButtonMarker from './button-marker';
 
 // not perfect, but I don’t know a better solution right now to please TS
 const viewportDefaults = {
@@ -30,7 +30,7 @@ const viewportDefaults = {
   minPitch: 0,
   width: 500,
   height: 500,
-  zoom: 13
+  zoom: 13,
 };
 
 interface Props {
@@ -47,7 +47,7 @@ const clampZoom = clamp(1, MAX_AUTOMATIC_ZOOM);
 function Map({ initialLocation, shops }: Props) {
   const [viewport, setViewport] = useState<ViewportProps>({
     ...viewportDefaults,
-    ...initialLocation
+    ...initialLocation,
   });
   const [{ showPopup, shop: shopInfo }, setPopup] = useState<{
     showPopup: boolean;
@@ -58,10 +58,10 @@ function Map({ initialLocation, shops }: Props) {
     if (shops.length === 0) return;
     const boundingBox = constructBoundingBox(shops);
     const { longitude, latitude, zoom } = new WebMercatorViewport(
-      viewport
+      viewport,
     ).fitBounds(boundingBox, {
       padding: 20,
-      offset: [0, -100]
+      offset: [0, -100],
     });
 
     setViewport({
@@ -70,7 +70,7 @@ function Map({ initialLocation, shops }: Props) {
       longitude,
       zoom: clampZoom(zoom),
       transitionDuration: 1000,
-      transitionInterpolator: new FlyToInterpolator()
+      transitionInterpolator: new FlyToInterpolator(),
     });
   }, [shops]);
 
@@ -114,14 +114,14 @@ function Map({ initialLocation, shops }: Props) {
                 onClick={() => setPopup({ showPopup: true, shop })}
               />
             ))}
-            <div style={{ position: "absolute", left: 10, top: 10 }}>
+            <div style={{ position: 'absolute', left: 10, top: 10 }}>
               <GeolocateControl
                 fitBoundsOptions={{ maxZoom: MAX_AUTOMATIC_ZOOM }}
                 positionOptions={{ enableHighAccuracy: true }}
                 showUserLocation={true}
               />
             </div>
-            <div style={{ position: "absolute", right: 10, top: 10 }}>
+            <div style={{ position: 'absolute', right: 10, top: 10 }}>
               <NavigationControl />
             </div>
           </ReactMapGL>
