@@ -10,6 +10,7 @@
 /.next/
 /out/
 .linaria-cache
+.eslintcache
 
 # production
 /build
