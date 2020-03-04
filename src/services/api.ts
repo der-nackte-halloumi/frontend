@@ -21,9 +21,9 @@ export const paginateData = <T = {}>({
 }: Pick<AxiosResponse<T>, 'headers' | 'data'>): PaginatedData<T> => ({
   data,
   meta: {
-    count: Number(headers['Pagination-Count']) || 0,
-    page: Number(headers['Pagination-Page']) || 0,
-    limit: Number(headers['Pagination-Limit']) || 0,
+    count: Number(headers['Pagination-Count']) || -1,
+    page: Number(headers['Pagination-Page']) || -1,
+    limit: Number(headers['Pagination-Limit']) || -1,
   },
 });
 
