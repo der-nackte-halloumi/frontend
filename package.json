@@ -11,8 +11,10 @@
     "export": "next export",
     "test:watch": "jest --watch",
     "test:ci": "jest --coverage --ci",
-    "lint": "eslint --ext .ts,.tsx src/",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.tsx\""
+    "eslint": "eslint --ext .tx,.tsx",
+    "lint": "npm run eslint -- src/",
+    "prettier": "prettier --write",
+    "format": "npm run prettier -- \"src/**/*.ts\" \"src/**/*.tsx\""
   },
   "dependencies": {
     "@types/react-virtualized-auto-sizer": "^1.0.0",
@@ -46,9 +48,21 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "husky": "^4.2.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.1.0",
+    "lint-staged": "^10.0.8",
     "prettier": "1.19.1",
     "typescript": "^3.7.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "npm run eslint -- --cache --fix"
+    ]
   }
 }
