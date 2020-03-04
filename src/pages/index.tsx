@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
-import { styled } from "linaria/react";
+import React, { useState, useEffect } from 'react';
+import { styled } from 'linaria/react';
 
-import Map from "../components/map";
-import { searchStores } from "../services/api";
-import { Shop } from "../models/shop";
-import useDebounce from "../utils/use-debounce";
-import useTypewriterAnimation from "../utils/use-typewriter-animation";
-import { products } from "../constants/words";
+import Map from '../components/map';
+import { searchStores } from '../services/api';
+import { Shop } from '../models/shop';
+import useDebounce from '../utils/use-debounce';
+import useTypewriterAnimation from '../utils/use-typewriter-animation';
+import { products } from '../constants/words';
 
 const QuestionWrapper = styled.div`
   text-align: center;
@@ -50,11 +50,11 @@ const Header = styled.header`
   padding: 16px;
 `;
 
-const Home = () => {
-  const [query, setQuery] = useState("");
+const Home = (): JSX.Element => {
+  const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const placeholder = useTypewriterAnimation(isFocused ? [] : [...products], {
-    randomize: true
+    randomize: true,
   });
   const debouncedSearchTerm = useDebounce(query, 300);
   const [shops, setShops] = useState<Array<Shop>>([]);
@@ -63,7 +63,7 @@ const Home = () => {
     if (debouncedSearchTerm) {
       searchStores({ query: debouncedSearchTerm })
         .then(
-          ({ data }) => setShops(data || [])
+          ({ data }) => setShops(data || []),
           // TODO: handle error
         )
         .catch(console.error);
@@ -81,7 +81,7 @@ const Home = () => {
           type="search"
           onChange={event => setQuery(event.currentTarget.value)}
           value={query}
-          role="search"
+          role="searchbox"
           aria-label="Suche nach einem unverpackten Produkt"
           placeholder={placeholder}
           onFocus={() => setIsFocused(true)}

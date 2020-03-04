@@ -1,8 +1,8 @@
-import React, { HTMLAttributes, ButtonHTMLAttributes } from "react";
-import { styled } from "linaria/react";
-import { Marker } from "react-map-gl";
+import React, { ButtonHTMLAttributes } from 'react';
+import { styled } from 'linaria/react';
+import { Marker } from 'react-map-gl';
 
-import MarkerIcon from "../../components/icons/marker";
+import MarkerIcon from '../icons/marker';
 
 const Button = styled.button`
   background: none;
@@ -18,17 +18,16 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   longitude: number;
 }
 
-export default ({ latitude, longitude, ...props }: Props) => {
-  return (
-    <Marker
-      latitude={latitude}
-      longitude={longitude}
-      offsetLeft={-7.5}
-      offsetTop={-15}
-    >
-      <Button {...props}>
-        <MarkerIcon></MarkerIcon>
-      </Button>
-    </Marker>
-  );
-};
+export default ({ latitude, longitude, ...props }: Props): JSX.Element => (
+  <Marker
+    latitude={latitude}
+    longitude={longitude}
+    offsetLeft={-7.5}
+    offsetTop={-15}
+  >
+    {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+    <Button {...props}>
+      <MarkerIcon />
+    </Button>
+  </Marker>
+);

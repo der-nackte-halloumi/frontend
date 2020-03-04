@@ -10,7 +10,11 @@
     "preexport": "npm run build",
     "export": "next export",
     "test:watch": "jest --watch",
-    "test:ci": "jest --coverage --ci"
+    "test:ci": "jest --coverage --ci",
+    "eslint": "eslint --ext .tx,.tsx",
+    "lint": "npm run eslint -- src/",
+    "prettier": "prettier --write",
+    "format": "npm run prettier -- \"src/**/*.ts\" \"src/**/*.tsx\""
   },
   "dependencies": {
     "@types/react-virtualized-auto-sizer": "^1.0.0",
@@ -31,11 +35,34 @@
     "@types/ramda": "^0.26.41",
     "@types/react": "^16.9.20",
     "@types/react-map-gl": "^5.2.0",
+    "@typescript-eslint/eslint-plugin": "^2.22.0",
+    "@typescript-eslint/parser": "^2.22.0",
     "@zeit/next-css": "^1.0.1",
     "babel-jest": "^25.1.0",
     "dotenv": "^8.2.0",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "husky": "^4.2.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.1.0",
+    "lint-staged": "^10.0.8",
+    "prettier": "1.19.1",
     "typescript": "^3.7.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "npm run eslint -- --cache --fix"
+    ]
   }
 }

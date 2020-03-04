@@ -3,17 +3,18 @@ interface Point {
   lng: number;
 }
 
+// eslint-disable-next-line import/prefer-default-export
 export const constructBoundingBox = (
-  points: ReadonlyArray<Point>
+  points: ReadonlyArray<Point>,
 ): [[number, number], [number, number]] => {
   if (points.length === 0) {
-    throw new Error("at least two points are needed to construct bounding box");
+    throw new Error('at least two points are needed to construct bounding box');
   }
   if (points.length === 1) {
     const { lat, lng } = points[0];
     return [
       [lng, lat],
-      [lng, lat]
+      [lng, lat],
     ];
   }
 
@@ -23,16 +24,16 @@ export const constructBoundingBox = (
   }>(
     (accum, curr) => ({
       latitudes: [...accum.latitudes, curr.lat],
-      longitudes: [...accum.longitudes, curr.lng]
+      longitudes: [...accum.longitudes, curr.lng],
     }),
     {
       latitudes: [],
-      longitudes: []
-    }
+      longitudes: [],
+    },
   );
 
   return [
     [Math.min(...longitudes), Math.min(...latitudes)],
-    [Math.max(...longitudes), Math.max(...latitudes)]
+    [Math.max(...longitudes), Math.max(...latitudes)],
   ];
 };

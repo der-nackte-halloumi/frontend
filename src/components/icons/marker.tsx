@@ -1,5 +1,7 @@
+import React, { HTMLAttributes } from 'react';
+
 // icon made by https://labs.mapbox.com/maki-icons/
-export default (props: any) => (
+export default (props: HTMLAttributes<SVGElement>): JSX.Element => (
   <svg
     version="1.1"
     id="marker-15"
@@ -7,6 +9,7 @@ export default (props: any) => (
     width="15px"
     height="15px"
     viewBox="0 0 15 15"
+    // eslint-disable-next-line react/jsx-props-no-spreading
     {...props}
   >
     <path
