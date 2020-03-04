@@ -9,7 +9,6 @@ import ReactMapGL, {
 } from 'react-map-gl';
 import { clamp } from 'ramda';
 import AutoSizer from 'react-virtualized-auto-sizer';
-import { css } from 'linaria';
 import Head from 'next/head';
 
 import { Shop } from '../../models/shop';
@@ -44,7 +43,7 @@ interface Props {
 const MAX_AUTOMATIC_ZOOM = 16;
 const clampZoom = clamp(1, MAX_AUTOMATIC_ZOOM);
 
-function Map({ initialLocation, shops }: Props) {
+function Map({ initialLocation, shops }: Props): JSX.Element {
   const [viewport, setViewport] = useState<ViewportProps>({
     ...viewportDefaults,
     ...initialLocation,
@@ -83,8 +82,9 @@ function Map({ initialLocation, shops }: Props) {
         />
       </Head>
       <AutoSizer disableHeight>
-        {({ width }) => (
+        {({ width }): JSX.Element => (
           <ReactMapGL
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...viewport}
             onViewportChange={setViewport}
             mapboxApiAccessToken={process.env.mapboxToken}
@@ -106,7 +106,7 @@ function Map({ initialLocation, shops }: Props) {
                 <p>{shopInfo.address}</p>
               </Popup>
             )}
-            {shops.map((shop) => (
+            {shops.map(shop => (
               <ButtonMarker
                 key={shop.id}
                 latitude={shop.lat}

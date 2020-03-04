@@ -24,8 +24,8 @@ const BaseFooter = styled.footer`
   }
 `;
 
-const Footer = (props: HTMLAttributes<HTMLDivElement>) => (
-  <div {...props}>
+const Footer = ({ className }: HTMLAttributes<HTMLDivElement>): JSX.Element => (
+  <div className={className}>
     <BaseFooter>
       <p>
         <a
@@ -36,9 +36,7 @@ const Footer = (props: HTMLAttributes<HTMLDivElement>) => (
         </a>
       </p>
       <p>
-        2020 –
-        {' '}
-        <a href="/">unpackaged.world</a>
+        2020 – <a href="/">unpackaged.world</a>
       </p>
     </BaseFooter>
   </div>

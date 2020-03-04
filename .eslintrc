@@ -12,7 +12,8 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "airbnb"
+    "airbnb",
+    "plugin:prettier/recommended"
   ],
   "env": {
     "browser": true,
@@ -26,6 +27,13 @@
       {
         "ts": "never",
         "tsx": "never"
+      }
+    ],
+    "react/jsx-one-expression-per-line": [0],
+    "@typescript-eslint/explicit-function-return-type": [
+      "warn",
+      {
+        "allowExpressions": true
       }
     ]
   },

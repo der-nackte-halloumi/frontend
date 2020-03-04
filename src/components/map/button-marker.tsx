@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 import { styled } from 'linaria/react';
 import { Marker } from 'react-map-gl';
 
@@ -18,13 +18,14 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   longitude: number;
 }
 
-export default ({ latitude, longitude, ...props }: Props) => (
+export default ({ latitude, longitude, ...props }: Props): JSX.Element => (
   <Marker
     latitude={latitude}
     longitude={longitude}
     offsetLeft={-7.5}
     offsetTop={-15}
   >
+    {/* eslint-disable-next-line react/jsx-props-no-spreading */}
     <Button {...props}>
       <MarkerIcon />
     </Button>
