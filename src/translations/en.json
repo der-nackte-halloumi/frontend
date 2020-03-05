@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "desc": "unpackaged.world helps you finding shops for buying unpackaged products."
+  },
+  "pages": {
+    "index": {
+      "search-1": "Where can I find",
+      "search-2": "unpackaged?"
+    }
+  },
+  "common": {
+    "links": {
+      "source-code": "Source code on GitHub"
+    },
+    "ui": {
+      "switch-lng-en": "Switch to English",
+      "switch-lng-de": "Switch to German",
+      "switch-lng-es": "Switch to Spanish"
+    }
+  }
+}

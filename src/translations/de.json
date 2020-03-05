@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "desc": "unpackaged.world unterstützt dich bei der Suche nach unverpackten Produkten."
+  },
+  "pages": {
+    "index": {
+      "search-1": "Wo gibt es",
+      "search-2": "unverpackt?"
+    }
+  },
+  "common": {
+    "links": {
+      "source-code": "Quellcode auf GitHub"
+    },
+    "ui": {
+      "switch-lng-en": "Sprache zu Englisch wechseln",
+      "switch-lng-de": "Sprache zu Deutsch wechseln",
+      "switch-lng-es": "Sprache zu Spanisch wechseln"
+    }
+  }
+}
