@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { styled } from 'linaria/react';
 import { useTranslation } from 'react-i18next';
 
-import Button from '../components/button';
+import Header from '../components/header';
 import Map from '../components/map';
 import { searchStores } from '../services/api';
 import { Shop } from '../models/shop';
@@ -47,11 +47,6 @@ const QuestionWrapper = styled.div`
   }
 `;
 
-const Header = styled.header`
-  text-align: right;
-  padding: 16px;
-`;
-
 const Home = (): JSX.Element => {
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -75,11 +70,7 @@ const Home = (): JSX.Element => {
 
   return (
     <>
-      <Header>
-        <Button selected>de</Button>
-        <Button>en</Button>
-        <Button>es</Button>
-      </Header>
+      <Header />
       <QuestionWrapper>
         <p>{t('pages.index.search-1')}</p>
         <input
