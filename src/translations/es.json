@@ -5,7 +5,9 @@
   "pages": {
     "index": {
       "search-1": "Where can I find",
-      "search-2": "unpackaged?"
+      "search-2": "unpackaged?",
+      "search-label": "Search for an unpackaged product",
+      "source-code-label": "See the source code for unpackaged.world on GitHub"
     }
   },
   "common": {

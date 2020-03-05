@@ -5,12 +5,14 @@
   "pages": {
     "index": {
       "search-1": "Wo gibt es",
-      "search-2": "unverpackt?"
+      "search-2": "unverpackt?",
+      "search-label": "Suche nach einem unverpackten Produkt"
     }
   },
   "common": {
     "links": {
-      "source-code": "Quellcode auf GitHub"
+      "source-code": "Quellcode auf GitHub",
+      "source-code-label": "Schau dir den Quellcode für unpackaged.world auf GitHub an"
     },
     "ui": {
       "switch-lng-en": "Sprache zu Englisch wechseln",

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { styled } from 'linaria/react';
+import { useTranslation } from 'react-i18next';
 
 import Map from '../components/map';
 import { searchStores } from '../services/api';
@@ -58,6 +59,7 @@ const Home = (): JSX.Element => {
   });
   const debouncedSearchTerm = useDebounce(query, 300);
   const [shops, setShops] = useState<Array<Shop>>([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (debouncedSearchTerm) {
@@ -76,18 +78,18 @@ const Home = (): JSX.Element => {
         <span>de</span> <span>en</span> <span>es</span>
       </Header>
       <QuestionWrapper>
-        <p>Wo gibt es</p>
+        <p>{t('pages.index.search-1')}</p>
         <input
           type="search"
           onChange={event => setQuery(event.currentTarget.value)}
           value={query}
           role="searchbox"
-          aria-label="Suche nach einem unverpackten Produkt"
+          aria-label={t('pages.index.search-label')}
           placeholder={placeholder}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
         />
-        <p>unverpackt?</p>
+        <p>{t('pages.index.search-2')}</p>
       </QuestionWrapper>
       <Map shops={shops} />
     </>
