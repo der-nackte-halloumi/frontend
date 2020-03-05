@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { styled } from 'linaria/react';
 import { useTranslation } from 'react-i18next';
 
+import Button from '../components/button';
 import Map from '../components/map';
 import { searchStores } from '../services/api';
 import { Shop } from '../models/shop';
@@ -75,7 +76,9 @@ const Home = (): JSX.Element => {
   return (
     <>
       <Header>
-        <span>de</span> <span>en</span> <span>es</span>
+        <Button selected>de</Button>
+        <Button>en</Button>
+        <Button>es</Button>
       </Header>
       <QuestionWrapper>
         <p>{t('pages.index.search-1')}</p>
