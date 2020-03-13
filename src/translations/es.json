@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "desc": "unpackaged.world the ayuda a encontrar tiendas con producto sin envasar."
+  },
+  "pages": {
+    "index": {
+      "search-1": "Dónde puedo encontrar",
+      "search-2": "sin envasar?",
+      "search-label": "Buscar un un package sin envasar",
+      "source-code-label": "Mira el código fuente de unpackage.world en GitHub"
+    }
+  },
+  "common": {
+    "links": {
+      "source-code": "Código fuente en GitHub"
+    },
+    "ui": {
+      "switch-lng-en": "Cambiar a inglés",
+      "switch-lng-de": "Cambiar a alemán",
+      "switch-lng-es": "Cambiar a español"
+    }
+  }
+}

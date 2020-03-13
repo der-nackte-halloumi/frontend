@@ -1,0 +1,24 @@
+{
+  "test1key": "test1value",
+  "meta": {
+    "desc": "unpackaged.world helps you finding shops for buying unpackaged products."
+  },
+  "pages": {
+    "index": {
+      "search-1": "Where can I find",
+      "search-2": "unpackaged?",
+      "search-label": "Search for an unpackaged product"
+    }
+  },
+  "common": {
+    "links": {
+      "source-code": "Source code on GitHub",
+      "source-code-label": "See the source code for unpackaged.world on GitHub"
+    },
+    "ui": {
+      "switch-lng-en": "Switch to English",
+      "switch-lng-de": "Switch to German",
+      "switch-lng-es": "Switch to Spanish"
+    }
+  }
+}
