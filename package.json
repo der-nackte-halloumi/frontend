@@ -7,14 +7,15 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
-    "preexport": "npm run build",
+    "preexport": "yarn run build",
     "export": "next export",
     "test:watch": "jest --watch",
     "test:ci": "jest --coverage --ci",
     "eslint": "eslint --ext .tx,.tsx",
-    "lint": "npm run eslint -- src/",
+    "lint": "yarn run eslint -- src/",
+    "tsc:lint": "tsc --noEmit -p .",
     "prettier": "prettier --write",
-    "format": "npm run prettier -- \"src/**/*.ts\" \"src/**/*.tsx\""
+    "format": "yarn run prettier -- \"src/**/*.ts\" \"src/**/*.tsx\""
   },
   "dependencies": {
     "@types/react-virtualized-auto-sizer": "^1.0.0",
@@ -60,13 +61,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "yarn run tsc:lint && lint-staged"
     }
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "npm run test -- --findRelatedTests --ci",
-      "npm run eslint -- --cache --fix"
+      "yarn run test -- --findRelatedTests --ci",
+      "yarn run eslint -- --cache --fix"
     ]
   }
 }
