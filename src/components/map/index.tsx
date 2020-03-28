@@ -6,6 +6,7 @@ import ReactMapGL, {
   FlyToInterpolator,
   ViewportProps,
   Popup,
+  ContextViewportChangeHandler,
 } from 'react-map-gl';
 import { clamp } from 'ramda';
 import AutoSizer from 'react-virtualized-auto-sizer';
@@ -32,18 +33,20 @@ const viewportDefaults = {
   zoom: 13,
 };
 
+type LatLong = {
+  latitude: number;
+  longitude: number;
+};
 interface Props {
-  initialLocation?: {
-    latitude: number;
-    longitude: number;
-  };
+  initialLocation?: LatLong;
   shops: Array<Shop>;
+  onViewportChange?: (latLong: LatLong) => void;
 }
 
 const MAX_AUTOMATIC_ZOOM = 16;
 const clampZoom = clamp(1, MAX_AUTOMATIC_ZOOM);
 
-function Map({ initialLocation, shops }: Props): JSX.Element {
+function Map({ initialLocation, shops, onViewportChange }: Props): JSX.Element {
   const [viewport, setViewport] = useState<ViewportProps>({
     ...viewportDefaults,
     ...initialLocation,
@@ -52,6 +55,13 @@ function Map({ initialLocation, shops }: Props): JSX.Element {
     showPopup: boolean;
     shop: Shop | null;
   }>({ showPopup: false, shop: null });
+
+  const handleViewportChange: ContextViewportChangeHandler = viewState => {
+    setViewport(viewState);
+    if (onViewportChange) {
+      onViewportChange(viewState);
+    }
+  };
 
   useEffect(() => {
     if (shops.length === 0) return;
@@ -86,7 +96,7 @@ function Map({ initialLocation, shops }: Props): JSX.Element {
           <ReactMapGL
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...viewport}
-            onViewportChange={setViewport}
+            onViewportChange={handleViewportChange}
             mapboxApiAccessToken={process.env.mapboxToken}
             onError={console.info}
             mapStyle="mapbox://styles/chrstnst/ck6zhy4iv4avr1is7blvy0ng9"

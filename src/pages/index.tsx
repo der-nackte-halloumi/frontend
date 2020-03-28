@@ -9,6 +9,7 @@ import { Shop } from '../models/shop';
 import useDebounce from '../utils/use-debounce';
 import useTypewriterAnimation from '../utils/use-typewriter-animation';
 import { products } from '../constants/words';
+import { DEFAULT_LOCATION } from '../constants/geolocation';
 
 const QuestionWrapper = styled.div`
   text-align: center;
@@ -49,6 +50,7 @@ const QuestionWrapper = styled.div`
 
 const Home = (): JSX.Element => {
   const [query, setQuery] = useState('');
+  const [location, setLocation] = useState(DEFAULT_LOCATION);
   const [isFocused, setIsFocused] = useState(false);
   const placeholder = useTypewriterAnimation(isFocused ? [] : [...products], {
     randomize: true,
@@ -59,11 +61,9 @@ const Home = (): JSX.Element => {
 
   useEffect(() => {
     if (debouncedSearchTerm) {
-      searchStores({ query: debouncedSearchTerm })
-        .then(
-          ({ data }) => setShops(data || []),
-          // TODO: handle error
-        )
+      searchStores({ query: debouncedSearchTerm, ...location })
+        .then(({ data }) => setShops(data || []))
+        // TODO: handle error
         .catch(console.error);
     }
   }, [debouncedSearchTerm]);
@@ -85,7 +85,11 @@ const Home = (): JSX.Element => {
         />
         <p>{t('pages.index.search-2')}</p>
       </QuestionWrapper>
-      <Map shops={shops} />
+      <Map
+        shops={shops}
+        initialLocation={location}
+        onViewportChange={setLocation}
+      />
     </>
   );
 };
