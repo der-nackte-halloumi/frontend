@@ -6,19 +6,18 @@ The frontend for [unpackaged.world](https://unpackaged.world), written with Reac
 
 ## Installation
 
-<!--
 Create your own `.env`-file and add the respective tokens:
 
 ```sh
 cp -p .env.dist .env
 ```
 
-_Note: The pre-filled configuration assumes a local installation by setting up the [base](https://github.com/der-nackte-halloumi/base) repo._ -->
+_Note: The pre-filled configuration assumes a local installation by setting up the [base](https://github.com/der-nackte-halloumi/base) repo._
 
-Install all dependencies:
+The application is setup with [yarn](https://yarnpkg.com/) as package manager. To install all dependencies run:
 
 ```sh
-npm install
+yarn install --pure-lockfile
 ```
 
 ## Development
@@ -26,7 +25,7 @@ npm install
 Start the build- and development-server
 
 ```sh
-npm run dev
+yarn run dev
 ```
 
 and head over to [localhost:3000](http://localhost:3000).
