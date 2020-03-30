@@ -39,7 +39,7 @@ const Footer = ({ className }: HTMLAttributes<HTMLDivElement>): JSX.Element => {
           </a>
         </p>
         <p>
-          2020 – <a href="/">${window.location.host}</a>
+          2020 - <a href="/">${window?.location.host}</a>
         </p>
       </BaseFooter>
     </div>
