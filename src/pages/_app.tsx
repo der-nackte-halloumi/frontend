@@ -32,7 +32,8 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
       <Head>
-        <title>unpackaged.world</title>
+        {/* TODO: internationalize title */}
+        <title>Der nackte Halloumi</title>
         {/* TODO: get proper favicon */}
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content={t('meta.desc')} />

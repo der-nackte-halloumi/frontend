@@ -1,6 +1,9 @@
 const { parsed: envVariables } = require('dotenv').config();
 const withCSS = require('@zeit/next-css');
 
+const readFromEnvironmentOr = (key, or) =>
+  process.env[key] || (envVariables && envVariables[key]) || or;
+
 module.exports = withCSS({
   webpack(config, options) {
     config.module.rules.push({
@@ -19,8 +22,8 @@ module.exports = withCSS({
   },
 
   env: {
-    mapboxToken: process.env.FE_MAPBOX_TOKEN || envVariables.FE_MAPBOX_TOKEN,
-    apiUrl: process.env.API_URL || envVariables.API_URL,
+    mapboxToken: readFromEnvironmentOr('FE_MAPBOX_TOKEN', ''),
+    apiUrl: readFromEnvironmentOr('API_URL', ''),
   },
   distDir: 'build',
   environment: process.env.NODE_ENV || 'production',

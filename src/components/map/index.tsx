@@ -56,7 +56,7 @@ function Map({ initialLocation, shops, onViewportChange }: Props): JSX.Element {
     shop: Shop | null;
   }>({ showPopup: false, shop: null });
 
-  const handleViewportChange: ContextViewportChangeHandler = viewState => {
+  const handleViewportChange: ContextViewportChangeHandler = (viewState) => {
     setViewport(viewState);
     if (onViewportChange) {
       onViewportChange(viewState);
@@ -116,7 +116,7 @@ function Map({ initialLocation, shops, onViewportChange }: Props): JSX.Element {
                 <p>{shopInfo.address}</p>
               </Popup>
             )}
-            {shops.map(shop => (
+            {shops.map((shop) => (
               <ButtonMarker
                 key={shop.id}
                 latitude={shop.lat}

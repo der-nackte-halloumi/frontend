@@ -18,7 +18,7 @@ const Header = (): JSX.Element => {
   ): void {
     const nextLanguage = event.currentTarget.value;
 
-    i18n.changeLanguage(nextLanguage, err => {
+    i18n.changeLanguage(nextLanguage, (err) => {
       if (err) {
         console.error(`switching the language to ${nextLanguage} failed:`, err);
       }

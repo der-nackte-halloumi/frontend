@@ -75,7 +75,7 @@ const Home = (): JSX.Element => {
         <p>{t('pages.index.search-1')}</p>
         <input
           type="search"
-          onChange={event => setQuery(event.currentTarget.value)}
+          onChange={(event) => setQuery(event.currentTarget.value)}
           value={query}
           role="searchbox"
           aria-label={t('pages.index.search-label')}
