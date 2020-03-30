@@ -1,10 +1,15 @@
-/* eslint-disable import/prefer-default-export */
 import axios, { AxiosResponse } from 'axios';
-import { Shop } from '../models/shop';
 
-const apiUrl =
-  process.env.apiUrl ||
-  `${window.location.protocol}//api.${window.location.host}`;
+import { Shop } from '../models/shop';
+import { accessWindow } from '../utils/access-global';
+
+const getApiUrl = (path: string): string => {
+  const location = accessWindow<Partial<Location>>(['location'], {});
+  const apiUrl =
+    process.env.apiUrl || `${location.protocol}//api.${location.host}`;
+
+  return `${apiUrl}${path}`;
+};
 
 type PaginatedData<T> = {
   data: T;
@@ -37,6 +42,6 @@ export const searchStores = ({
   latitude,
   longitude,
 }: SearchStoreParams): Promise<PaginatedData<Shop[] | null>> =>
-  axios(`${apiUrl}/shops`, {
+  axios(getApiUrl('/shops'), {
     params: { query, lat: latitude, long: longitude },
-  }).then(res => paginateData<Array<Shop> | null>(res));
+  }).then((res) => paginateData<Array<Shop> | null>(res));
