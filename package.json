@@ -12,10 +12,10 @@
     "test:watch": "jest --watch",
     "test:ci": "jest --coverage --ci",
     "eslint": "eslint --ext .tx,.tsx",
-    "lint": "yarn run eslint -- src/",
+    "lint": "yarn run eslint src/",
     "tsc:lint": "tsc --noEmit -p .",
     "prettier": "prettier --write",
-    "format": "yarn run prettier -- \"src/**/*.ts\" \"src/**/*.tsx\""
+    "format": "yarn run prettier \"src/**/*.ts\" \"src/**/*.tsx\""
   },
   "dependencies": {
     "@types/react-virtualized-auto-sizer": "^1.0.0",
@@ -66,8 +66,8 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn run test -- --findRelatedTests --ci",
-      "yarn run eslint -- --cache --fix"
+      "yarn run test --findRelatedTests --ci",
+      "yarn run eslint --cache --fix"
     ]
   }
 }
