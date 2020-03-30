@@ -17,7 +17,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'en',
+    lng: 'de',
     fallbackLng: 'en',
     debug: process.env.NODE_ENV === 'development',
   });

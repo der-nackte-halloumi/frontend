@@ -20,7 +20,7 @@ module.exports = withCSS({
 
   env: {
     mapboxToken: process.env.FE_MAPBOX_TOKEN || envVariables.FE_MAPBOX_TOKEN,
-    apiUrl: process.env.API_URL || envVariables.API_URL,
+    apiUrl: process.env.API_URL || (envVariables && envVariables.API_URL) || '',
   },
   distDir: 'build',
   environment: process.env.NODE_ENV || 'production',
