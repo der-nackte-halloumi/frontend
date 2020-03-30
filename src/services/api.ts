@@ -1,15 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
 
 import { Shop } from '../models/shop';
-import { accessWindow } from '../utils/access-global';
 
-const getApiUrl = (path: string): string => {
-  const location = accessWindow<Partial<Location>>(['location'], {});
-  const apiUrl =
-    process.env.apiUrl || `${location.protocol}//api.${location.host}`;
-
-  return `${apiUrl}${path}`;
-};
+const getApiUrl = (path: string): string => `${process.env.apiUrl}${path}`;
 
 type PaginatedData<T> = {
   data: T;

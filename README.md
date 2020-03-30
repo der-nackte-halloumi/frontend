@@ -1,6 +1,6 @@
 # frontend
 
-The frontend for [unpackaged.world](https://unpackaged.world), written with React and Next.js.
+The frontend for [der-nackte-halloumi.de](https://der-nackte-halloumi.de) / [unpackaged.world](https://unpackaged.world), written with React and Next.js.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/4a0c2551-f427-4ead-9baf-bda001c8fe93/deploy-status)](https://app.netlify.com/sites/clever-pasteur-7e02ee/deploys)
 

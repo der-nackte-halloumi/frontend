@@ -1,6 +1,6 @@
 {
   "meta": {
-    "desc": "unpackaged.world unterstützt dich bei der Suche nach unverpackten Produkten."
+    "desc": "Der nackte Halloumi unterstützt dich bei der Suche nach unverpackten Produkten."
   },
   "pages": {
     "index": {
@@ -12,7 +12,7 @@
   "common": {
     "links": {
       "source-code": "Quellcode auf GitHub",
-      "source-code-label": "Schau dir den Quellcode für unpackaged.world auf GitHub an"
+      "source-code-label": "Schau dir den Quellcode für den nackten Halloumi auf GitHub an"
     },
     "ui": {
       "switch-lng-en": "Sprache zu Englisch wechseln",

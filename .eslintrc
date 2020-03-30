@@ -13,6 +13,7 @@
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "airbnb",
+    "plugin:prettier/recommended",
     "prettier/react"
   ],
   "env": {
@@ -36,7 +37,8 @@
       {
         "allowExpressions": true
       }
-    ]
+    ],
+    "prettier/prettier": 1
   },
   "settings": {
     "import/resolver": {
