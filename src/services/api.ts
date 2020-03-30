@@ -4,7 +4,7 @@ import { Shop } from '../models/shop';
 
 const getApiUrl = (path: string): string =>
   process.env.apiUrl ||
-  `${window.location.protocol}//api.${window.location.host}${path}`;
+  `${window?.location.protocol}//api.${window?.location.host}${path}`;
 
 type PaginatedData<T> = {
   data: T;
