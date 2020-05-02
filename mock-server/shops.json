@@ -1,0 +1,23 @@
+[
+  {
+    "id": "7c3153b9-edb0-4ae4-a068-8c9d06532ea5",
+    "name": "Original Unverpackt",
+    "address": "Wiener Straße 16, 10999 Berlin",
+    "lat": 52.497837,
+    "lng": 13.428037
+  },
+  {
+    "id": "d7106377-c6e3-4d4e-bf49-b077e719fbe7",
+    "name": "YES FUTURE Positive Supermarket",
+    "address": "Carrer de Viladomat, 66, 08015 Barcelona, Spain",
+    "lat": 41.37816,
+    "lng": 2.1572628
+  },
+  {
+    "id": "6ef6605f-8003-4a0a-8284-4bca61d31b98",
+    "name": "Original Unverpackt",
+    "address": "Großbeerenstraße 27A, 10965 Berlin",
+    "lat": 52.49411,
+    "lng": 13.38346
+  }
+]
