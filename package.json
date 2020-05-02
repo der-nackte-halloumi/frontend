@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:mock-server": "nodemon --watch mock-server ./mock-server",
     "build": "next build",
     "start": "next start",
     "test": "jest",
@@ -52,10 +53,13 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^3.0.0",
+    "fastify": "^2.14.0",
+    "fastify-cors": "^3.0.3",
     "husky": "^4.2.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.2.4",
     "lint-staged": "^10.1.0",
+    "nodemon": "^2.0.3",
     "prettier": "2.0.2",
     "typescript": "^3.7.5"
   },
