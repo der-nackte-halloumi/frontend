@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { styled } from 'linaria/react';
 import { useTranslation } from 'react-i18next';
+import { useRouter, NextRouter } from 'next/router';
 
 import Header from '../components/header';
 import Map from '../components/map';
@@ -48,8 +49,12 @@ const QuestionWrapper = styled.div`
   }
 `;
 
+const extractInitialQueryFromRouter = ({ query }: NextRouter): string =>
+  typeof query.q === 'string' ? query.q : '';
+
 const Home = (): JSX.Element => {
-  const [query, setQuery] = useState('');
+  const router = useRouter();
+  const [query, setQuery] = useState(extractInitialQueryFromRouter(router));
   const [location, setLocation] = useState(DEFAULT_LOCATION);
   const [isFocused, setIsFocused] = useState(false);
   const placeholder = useTypewriterAnimation(isFocused ? [] : [...products], {
@@ -58,6 +63,13 @@ const Home = (): JSX.Element => {
   const debouncedSearchTerm = useDebounce(query, 300);
   const [shops, setShops] = useState<Array<Shop>>([]);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    const initialSearchTerm = extractInitialQueryFromRouter(router);
+    if (initialSearchTerm) {
+      setQuery(initialSearchTerm);
+    }
+  }, [router]);
 
   useEffect(() => {
     if (debouncedSearchTerm) {
