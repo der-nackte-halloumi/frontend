@@ -29,3 +29,16 @@ yarn run dev
 ```
 
 and head over to [localhost:3000](http://localhost:3000).
+
+The project includes a small mock server running on port 3003:
+
+```sh
+yarn run dev:mock-server
+```
+
+To use the included mock server, you need to adapt the `.env`-file to point towards it:
+
+```diff
+- API_URL=https://api.unpackaged.test
++ API_URL=http://localhost:3003
+```
