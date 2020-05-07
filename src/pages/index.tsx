@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { styled } from 'linaria/react';
 import { useTranslation } from 'react-i18next';
-import { useRouter, NextRouter } from 'next/router';
 
 import Header from '../components/header';
 import Map from '../components/map';
 import { searchStores } from '../services/api';
 import { Shop } from '../models/shop';
-import useDebounce from '../utils/use-debounce';
 import useTypewriterAnimation from '../utils/use-typewriter-animation';
 import { products } from '../constants/words';
 import { DEFAULT_LOCATION } from '../constants/geolocation';
+import useDebounce from '../utils/use-debounce';
+import { useInitialQueryValueFromRouter } from '../utils/router';
 
 const QuestionWrapper = styled.div`
   text-align: center;
@@ -49,12 +49,8 @@ const QuestionWrapper = styled.div`
   }
 `;
 
-const extractInitialQueryFromRouter = ({ query }: NextRouter): string =>
-  typeof query.q === 'string' ? query.q : '';
-
 const Home = (): JSX.Element => {
-  const router = useRouter();
-  const [query, setQuery] = useState(extractInitialQueryFromRouter(router));
+  const [query, setQuery] = useState('');
   const [location, setLocation] = useState(DEFAULT_LOCATION);
   const [isFocused, setIsFocused] = useState(false);
   const placeholder = useTypewriterAnimation(isFocused ? [] : [...products], {
@@ -64,12 +60,11 @@ const Home = (): JSX.Element => {
   const [shops, setShops] = useState<Array<Shop>>([]);
   const { t } = useTranslation();
 
-  useEffect(() => {
-    const initialSearchTerm = extractInitialQueryFromRouter(router);
-    if (initialSearchTerm) {
-      setQuery(initialSearchTerm);
+  useInitialQueryValueFromRouter('q', (q) => {
+    if (!Array.isArray(q)) {
+      setQuery(q);
     }
-  }, [router]);
+  });
 
   useEffect(() => {
     if (debouncedSearchTerm) {
