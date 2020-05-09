@@ -17,6 +17,7 @@ import { constructBoundingBox } from '../../utils/geolocation';
 import { DEFAULT_LOCATION } from '../../constants/geolocation';
 
 import ButtonMarker, { size as buttonMarkerSize } from './button-marker';
+import PopupContent from './popup-content';
 
 // not perfect, but I don’t know a better solution right now to please TS
 const viewportDefaults = {
@@ -109,11 +110,10 @@ function Map({ initialLocation, shops, onViewportChange }: Props): JSX.Element {
                 closeButton
                 closeOnClick={false}
                 onClose={() => setPopup({ showPopup: false, shop: null })}
-                anchor="bottom"
                 offsetTop={-buttonMarkerSize}
+                tipSize={buttonMarkerSize / 2}
               >
-                <p>{shopInfo.name}</p>
-                <p>{shopInfo.address}</p>
+                <PopupContent shop={shopInfo} />
               </Popup>
             )}
             {shops.map((shop) => (
