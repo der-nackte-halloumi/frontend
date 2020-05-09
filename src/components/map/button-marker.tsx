@@ -4,6 +4,8 @@ import { Marker } from 'react-map-gl';
 
 import MarkerIcon from '../icons/marker';
 
+export const size = 24;
+
 const Button = styled.button`
   background: none;
   border: none;
@@ -22,12 +24,12 @@ export default ({ latitude, longitude, ...props }: Props): JSX.Element => (
   <Marker
     latitude={latitude}
     longitude={longitude}
-    offsetLeft={-7.5}
-    offsetTop={-15}
+    offsetLeft={-(size / 2)}
+    offsetTop={-size}
   >
     {/* eslint-disable-next-line react/jsx-props-no-spreading */}
     <Button {...props}>
-      <MarkerIcon />
+      <MarkerIcon style={{ width: `${size}px`, height: `${size}px` }} />
     </Button>
   </Marker>
 );

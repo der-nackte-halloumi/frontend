@@ -16,7 +16,7 @@ import { Shop } from '../../models/shop';
 import { constructBoundingBox } from '../../utils/geolocation';
 import { DEFAULT_LOCATION } from '../../constants/geolocation';
 
-import ButtonMarker from './button-marker';
+import ButtonMarker, { size as buttonMarkerSize } from './button-marker';
 
 // not perfect, but I don’t know a better solution right now to please TS
 const viewportDefaults = {
@@ -110,7 +110,7 @@ function Map({ initialLocation, shops, onViewportChange }: Props): JSX.Element {
                 closeOnClick={false}
                 onClose={() => setPopup({ showPopup: false, shop: null })}
                 anchor="bottom"
-                offsetTop={-15}
+                offsetTop={-buttonMarkerSize}
               >
                 <p>{shopInfo.name}</p>
                 <p>{shopInfo.address}</p>
