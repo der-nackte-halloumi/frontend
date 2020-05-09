@@ -99,7 +99,7 @@ function Map({ initialLocation, shops, onViewportChange }: Props): JSX.Element {
             onViewportChange={handleViewportChange}
             mapboxApiAccessToken={process.env.mapboxToken}
             onError={console.info}
-            mapStyle="mapbox://styles/chrstnst/ck6zhy4iv4avr1is7blvy0ng9"
+            mapStyle="mapbox://styles/chrstnst/ck9q6dr2w1f1k1jufx5csfolz"
             width={width}
           >
             {showPopup && shopInfo && (

@@ -6,10 +6,11 @@ import Header from '../components/header';
 import Map from '../components/map';
 import { searchStores } from '../services/api';
 import { Shop } from '../models/shop';
-import useDebounce from '../utils/use-debounce';
 import useTypewriterAnimation from '../utils/use-typewriter-animation';
 import { products } from '../constants/words';
 import { DEFAULT_LOCATION } from '../constants/geolocation';
+import useDebounce from '../utils/use-debounce';
+import { useInitialQueryValueFromRouter } from '../utils/router';
 
 const QuestionWrapper = styled.div`
   text-align: center;
@@ -58,6 +59,12 @@ const Home = (): JSX.Element => {
   const debouncedSearchTerm = useDebounce(query, 300);
   const [shops, setShops] = useState<Array<Shop>>([]);
   const { t } = useTranslation();
+
+  useInitialQueryValueFromRouter('q', (q) => {
+    if (!Array.isArray(q)) {
+      setQuery(q);
+    }
+  });
 
   useEffect(() => {
     if (debouncedSearchTerm) {
