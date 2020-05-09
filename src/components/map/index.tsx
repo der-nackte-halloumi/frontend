@@ -132,7 +132,7 @@ function Map({ initialLocation, shops, onViewportChange }: Props): JSX.Element {
               />
             </div>
             <div style={{ position: 'absolute', right: 10, top: 10 }}>
-              <NavigationControl />
+              <NavigationControl showCompass={false} />
             </div>
           </ReactMapGL>
         )}
