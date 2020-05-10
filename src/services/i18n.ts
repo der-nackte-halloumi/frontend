@@ -18,7 +18,7 @@ i18n
   .init({
     resources,
     debug: process.env.NODE_ENV === 'development',
-    fallbackLng: false,
+    fallbackLng: 'de',
     detection: {
       lookupQuerystring: 'lng',
       lookupLocalStorage: 'i18nextLng',
