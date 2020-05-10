@@ -1,18 +1,19 @@
 {
   "meta": {
-    "desc": "unpackaged.world the ayuda a encontrar tiendas con producto sin envasar."
+    "desc": "der-nackte-halloumi.de the ayuda a encontrar tiendas con producto sin envasar."
   },
   "pages": {
     "index": {
       "search-1": "Dónde puedo encontrar",
       "search-2": "sin envasar?",
       "search-label": "Buscar un un package sin envasar",
-      "source-code-label": "Mira el código fuente de unpackage.world en GitHub"
+      "source-code-label": "Mira el código fuente de der-nackte-halloumi.de en GitHub"
     }
   },
   "common": {
     "links": {
-      "source-code": "Código fuente en GitHub"
+      "source-code": "Código fuente en GitHub",
+      "source-code-label": "Vea el código fuente de der-nackte-halloumi.de en GitHub"
     },
     "ui": {
       "switch-lng-en": "Cambiar a inglés",
