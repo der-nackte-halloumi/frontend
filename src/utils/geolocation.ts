@@ -37,3 +37,12 @@ export const constructBoundingBox = (
     [Math.max(...longitudes), Math.max(...latitudes)],
   ];
 };
+
+export const formatDistance = (distance: number): string => {
+  const roundedDistanceInMeter = Math.round(distance * 100) * 10;
+
+  if (roundedDistanceInMeter < 1000) {
+    return `${roundedDistanceInMeter}m`;
+  }
+  return `${(roundedDistanceInMeter / 1000).toFixed(1)}km`.replace('.0', '');
+};

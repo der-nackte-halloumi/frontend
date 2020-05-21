@@ -4,4 +4,5 @@ export interface Shop {
   address: string;
   lat: number;
   lng: number;
+  distance: number | null;
 }

@@ -1,4 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
+import distance from '@turf/distance';
+import { point } from '@turf/helpers';
 
 import { Shop } from '../models/shop';
 
@@ -34,7 +36,21 @@ export const searchStores = ({
   query,
   latitude,
   longitude,
-}: SearchStoreParams): Promise<PaginatedData<Shop[] | null>> =>
+}: SearchStoreParams): Promise<PaginatedData<Shop[]>> =>
   axios(getApiUrl('/shops'), {
     params: { query, lat: latitude, long: longitude },
-  }).then((res) => paginateData<Array<Shop> | null>(res));
+  }).then((res) => {
+    const result = paginateData<Array<Shop> | null>(res);
+    const searchLocation =
+      longitude && latitude ? point([longitude, latitude]) : null;
+
+    return {
+      ...result,
+      data: (result.data || []).map((shop) => ({
+        ...shop,
+        distance: searchLocation
+          ? distance(point([shop.lng, shop.lat]), searchLocation)
+          : null,
+      })),
+    };
+  });

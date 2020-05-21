@@ -17,9 +17,13 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'en',
-    fallbackLng: 'en',
     debug: process.env.NODE_ENV === 'development',
+    fallbackLng: 'de',
+    detection: {
+      lookupQuerystring: 'lng',
+      lookupLocalStorage: 'i18nextLng',
+      caches: ['localStorage'],
+    },
   });
 
 export default i18n;

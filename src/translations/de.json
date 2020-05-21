@@ -10,6 +10,9 @@
     }
   },
   "common": {
+    "map": {
+      "estimated-distance": "circa {{distance}} Luftlinie"
+    },
     "links": {
       "source-code": "Quellcode auf GitHub",
       "source-code-label": "Schau dir den Quellcode für den nackten Halloumi auf GitHub an"
