@@ -11,6 +11,9 @@
     }
   },
   "common": {
+    "map": {
+      "estimated-distance": "alrededor de {{distance}} mientras el cuervo vuela"
+    },
     "links": {
       "source-code": "Código fuente en GitHub",
       "source-code-label": "Vea el código fuente de der-nackte-halloumi.de en GitHub"

@@ -10,6 +10,9 @@
     }
   },
   "common": {
+    "map": {
+      "estimated-distance": "about {{distance}} as the crow flies"
+    },
     "links": {
       "source-code": "Source code on GitHub",
       "source-code-label": "See the source code for der-nackte-halloumi.de on GitHub"

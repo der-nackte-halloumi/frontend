@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 import { styled } from 'linaria/react';
+import { useTranslation } from 'react-i18next';
 
 import { Shop } from '../../models/shop';
+import { formatDistance } from '../../utils/geolocation';
 
 const Name = styled.p`
   margin: 0 0 4px;
@@ -16,17 +18,27 @@ const Address = styled.p`
 `;
 const Distance = styled.p`
   text-align: end;
+  font-size: 75%;
 `;
 
 interface Props {
   shop: Shop;
 }
-const PopupContent: FC<Props> = ({ shop }: Props) => (
-  <>
-    <Name>{shop.name}</Name>
-    <Address>{shop.address}</Address>
-    <Distance>{shop.distance}</Distance>
-  </>
-);
+const PopupContent: FC<Props> = ({ shop }: Props) => {
+  const { t } = useTranslation();
+  return (
+    <>
+      <Name>{shop.name}</Name>
+      <Address>{shop.address}</Address>
+      {shop.distance && (
+        <Distance>
+          {t('common.map.estimated-distance', {
+            distance: formatDistance(shop.distance),
+          })}
+        </Distance>
+      )}
+    </>
+  );
+};
 
 export default PopupContent;
