@@ -130,13 +130,11 @@ function Map({
             onClick={() => setPopup({ showPopup: true, shop })}
           />
         ))}
-        <div style={{ position: 'absolute', left: 10, top: 10 }}>
-          <GeolocateControl
-            fitBoundsOptions={{ maxZoom: MAX_AUTOMATIC_ZOOM }}
-            positionOptions={{ enableHighAccuracy: true }}
-            showUserLocation
-          />
-        </div>
+        <GeolocateControl
+          style={{ position: 'absolute', left: 10, top: 10 }}
+          fitBoundsOptions={{ maxZoom: MAX_AUTOMATIC_ZOOM }}
+          positionOptions={{ enableHighAccuracy: true }}
+        />
         <div style={{ position: 'absolute', right: 10, top: 10 }}>
           <NavigationControl showCompass={false} />
         </div>

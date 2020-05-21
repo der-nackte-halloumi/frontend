@@ -5,6 +5,11 @@ import { useTranslation } from 'react-i18next';
 import { Shop } from '../../models/shop';
 import { formatDistance } from '../../utils/geolocation';
 
+const Container = styled.div`
+  & > *:not(:last-child) {
+    margin-bottom: 4px;
+  }
+`;
 const Name = styled.p`
   margin: 0 0 4px;
   text-align: start;
@@ -19,6 +24,9 @@ const Address = styled.p`
 const Distance = styled.p`
   text-align: end;
   font-size: 75%;
+  margin: 8px 0 0;
+  padding-top: 4px;
+  border-top: 1px dashed lightgrey;
 `;
 
 interface Props {
@@ -27,7 +35,7 @@ interface Props {
 const PopupContent: FC<Props> = ({ shop }: Props) => {
   const { t } = useTranslation();
   return (
-    <>
+    <Container>
       <Name>{shop.name}</Name>
       <Address>{shop.address}</Address>
       {shop.distance && (
@@ -37,7 +45,7 @@ const PopupContent: FC<Props> = ({ shop }: Props) => {
           })}
         </Distance>
       )}
-    </>
+    </Container>
   );
 };
 
