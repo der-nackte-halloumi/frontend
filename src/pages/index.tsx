@@ -1,6 +1,7 @@
 import React, { useState, useEffect, InputHTMLAttributes } from 'react';
 import { styled } from 'linaria/react';
 import { useTranslation } from 'react-i18next';
+import AutoSizer from 'react-virtualized-auto-sizer';
 
 import Header from '../components/header';
 import Map from '../components/map';
@@ -46,6 +47,13 @@ const Input = styled.input`
     border: 2px solid #1d1e62;
     border-radius: 1em;
   }
+`;
+
+const MapContainer = styled.div`
+  margin: 0 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px 0px #a2a2a2;
 `;
 
 interface TypewriterInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -109,11 +117,18 @@ const Home = (): JSX.Element => {
         />
         <p>{t('pages.index.search-2')}</p>
       </QuestionWrapper>
-      <Map
-        shops={shops}
-        initialLocation={location}
-        onViewportChange={setLocation}
-      />
+      <MapContainer>
+        <AutoSizer disableHeight>
+          {({ width }): JSX.Element => (
+            <Map
+              width={width}
+              shops={shops}
+              initialLocation={location}
+              onViewportChange={setLocation}
+            />
+          )}
+        </AutoSizer>
+      </MapContainer>
     </>
   );
 };
