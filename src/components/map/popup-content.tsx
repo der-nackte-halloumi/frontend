@@ -14,6 +14,9 @@ const Address = styled.p`
   text-align: start;
   font-size: 75%;
 `;
+const Distance = styled.p`
+  text-align: end;
+`;
 
 interface Props {
   shop: Shop;
@@ -22,6 +25,7 @@ const PopupContent: FC<Props> = ({ shop }: Props) => (
   <>
     <Name>{shop.name}</Name>
     <Address>{shop.address}</Address>
+    <Distance>{shop.distance}</Distance>
   </>
 );
 
