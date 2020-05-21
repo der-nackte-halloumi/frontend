@@ -12,7 +12,7 @@
   },
   "common": {
     "map": {
-      "estimated-distance": "alrededor de {{distance}} mientras el cuervo vuela"
+      "estimated-distance": "alrededor de {{distance}} de ti"
     },
     "links": {
       "source-code": "Código fuente en GitHub",
