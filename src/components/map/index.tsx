@@ -66,11 +66,14 @@ function Map({ initialLocation, shops, onViewportChange }: Props): JSX.Element {
 
   useEffect(() => {
     if (shops.length === 0) return;
-    const boundingBox = constructBoundingBox(shops);
+    const boundingBox = constructBoundingBox([
+      ...shops,
+      { lat: viewport.latitude, lng: viewport.longitude },
+    ]);
     const { longitude, latitude, zoom } = new WebMercatorViewport(
       viewport,
     ).fitBounds(boundingBox, {
-      padding: 20,
+      padding: 50,
       offset: [0, -100],
     });
 
