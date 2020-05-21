@@ -118,9 +118,7 @@ const Home = (): JSX.Element => {
             '?',
           )
         : '';
-      router.replace(`${router.pathname}${queryString}`, undefined, {
-        // shallow: true,
-      });
+      router.replace(`${router.pathname}${queryString}`);
     }
   };
 
