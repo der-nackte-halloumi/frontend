@@ -2,6 +2,7 @@ import React, { useState, useEffect, InputHTMLAttributes } from 'react';
 import { styled } from 'linaria/react';
 import { useTranslation } from 'react-i18next';
 import AutoSizer from 'react-virtualized-auto-sizer';
+import { useRouter } from 'next/router';
 
 import Header from '../components/header';
 import Map from '../components/map';
@@ -81,6 +82,7 @@ const TypewriterInput = ({
 };
 
 const Home = (): JSX.Element => {
+  const router = useRouter();
   const [query, setQuery] = useState('');
   const [location, setLocation] = useState(DEFAULT_LOCATION);
   const [isFocused, setIsFocused] = useState(false);
@@ -102,13 +104,33 @@ const Home = (): JSX.Element => {
     }
   }, [debouncedSearchTerm]);
 
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(event.currentTarget.value);
+    const { q, ...otherQueries } = router.query;
+    if (q) {
+      const queryList = Object.entries(otherQueries);
+      const queryString = queryList.length
+        ? queryList.reduce(
+            (accum, curr, index) =>
+              `${accum}${curr[0]}=${curr[1]}${
+                index < queryList.length - 1 ? '&' : ''
+              }`,
+            '?',
+          )
+        : '';
+      router.replace(`${router.pathname}${queryString}`, undefined, {
+        // shallow: true,
+      });
+    }
+  };
+
   return (
     <>
       <Header />
       <QuestionWrapper>
         <p>{t('pages.index.search-1')}</p>
         <TypewriterInput
-          onChange={(event) => setQuery(event.currentTarget.value)}
+          onChange={handleInputChange}
           value={query}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
