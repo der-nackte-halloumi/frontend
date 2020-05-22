@@ -109,6 +109,14 @@ function Map({
         mapStyle="mapbox://styles/chrstnst/ck9q6dr2w1f1k1jufx5csfolz"
         width={width}
       >
+        <GeolocateControl
+          style={{ position: 'absolute', left: 10, top: 10 }}
+          fitBoundsOptions={{ maxZoom: MAX_AUTOMATIC_ZOOM }}
+          positionOptions={{ enableHighAccuracy: true }}
+        />
+        <div style={{ position: 'absolute', right: 10, top: 10 }}>
+          <NavigationControl showCompass={false} />
+        </div>
         {showPopup && shopInfo && (
           <Popup
             latitude={shopInfo.lat}
@@ -130,14 +138,6 @@ function Map({
             onClick={() => setPopup({ showPopup: true, shop })}
           />
         ))}
-        <GeolocateControl
-          style={{ position: 'absolute', left: 10, top: 10 }}
-          fitBoundsOptions={{ maxZoom: MAX_AUTOMATIC_ZOOM }}
-          positionOptions={{ enableHighAccuracy: true }}
-        />
-        <div style={{ position: 'absolute', right: 10, top: 10 }}>
-          <NavigationControl showCompass={false} />
-        </div>
       </ReactMapGL>
     </>
   );
